@@ -1,2 +1,2 @@
-# CN--MC.Princess
+# CN--Pearl
 For fresh squids! ;)
