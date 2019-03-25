@@ -1,13 +1,55 @@
+import dotenv from "dotenv";
 import React from "react";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import Navbar from "./components/Navigation";
+import AdminDashboard from "./modules/admin/AdminDashboard";
+import AdminAbilities from "./modules/admin/AdminAbilities";
+import AdminBrands from "./modules/admin/AdminBrands";
+import AdminClasses from "./modules/admin/AdminClasses";
+import AdminModes from "./modules/admin/AdminModes";
+import AdminSpecials from "./modules/admin/AdminSpecials";
+import AdminStages from "./modules/admin/AdminStages";
+import AdminSubs from "./modules/admin/AdminSubs";
+import AdminWeapons from "./modules/admin/AdminWeapons";
+import AdminWeights from "./modules/admin/AdminWeights";
+
+dotenv.config();
 
 class App extends React.Component {
 	render() {
 		return (
-			<div className="App">
-				<h2>CN--Pearl</h2>
-			</div>
+			<main className="App">
+				<Router>
+					<Navbar />
+					<h2>CN--Pearl</h2>
+
+					<ul>
+						<li>
+							<Link to="/admin">Admin</Link>
+						</li>
+					</ul>
+
+					<Switch>
+						<Route path="/" exact />
+						<Route path="/admin" exact component={AdminDashboard} />
+						<Route path="/admin/abilities" component={AdminAbilities} />
+						<Route path="/admin/brands" component={AdminBrands} />
+						<Route path="/admin/classes" component={AdminClasses} />
+						<Route path="/admin/modes" component={AdminModes} />
+						<Route path="/admin/specials" component={AdminSpecials} />
+						<Route path="/admin/stages" component={AdminStages} />
+						<Route path="/admin/subs" component={AdminSubs} />
+						<Route path="/admin/weapons" component={AdminWeapons} />
+						<Route path="/admin/weights" component={AdminWeights} />
+						<Route component={NotFound} />
+					</Switch>
+				</Router>
+			</main>
 		);
 	}
 }
+
+const NotFound = () => <h2>The content you are looking for is not here...</h2>;
 
 export default App;
