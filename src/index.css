@@ -1,11 +1,21 @@
 :root {
 	--font-size: 16px;
-	--font-family: "roboto";
+	--font-family: "sans-serif";
 	--font-color: #fff;
 	--main-color: #f54910;
 	--second-color: #f02d7d;
 	--third-color: #19d719;
 	--general-spacing: 1rem;
+}
+
+@font-face {
+	font-family: "Splatoon";
+	src: local("Splatoon"), url(./assets/Splatoon.otf) format("opentype");
+}
+
+@font-face {
+	font-family: "Splatoon2";
+	src: local("Splatoon2"), url(./assets/Splatoon2.otf) format("opentype");
 }
 
 html {
@@ -19,21 +29,22 @@ body {
 	margin: 0;
 	padding: 0;
 	color: var(--font-color);
+	font-family: "Splatoon2";
 }
 
 main {
 	min-height: 100vh;
 }
 
-.main-color{
+.main-color {
 	background-color: var(--main-color);
 }
 
-.second-color{
+.second-color {
 	background-color: var(--second-color);
 }
 
-.third-color{
+.third-color {
 	background-color: var(--third-color);
 }
 
@@ -41,10 +52,15 @@ a {
 	color: var(--font-color);
 }
 
-.navbar-toggler{
-	border: .25px solid var(--font-color);
+.navbar-toggler {
+	border: 0.25px solid var(--font-color);
 }
 
 .navbar-toggler-icon {
 	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.main-container {
+	padding: 1.5rem;
+	border-radius: 0.5rem;
 }

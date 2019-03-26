@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "./components/Navigation";
 import AdminDashboard from "./modules/admin/AdminDashboard";
@@ -19,31 +19,29 @@ dotenv.config();
 class App extends React.Component {
 	render() {
 		return (
-			<main className="App">
+			<main>
 				<Router>
 					<Navbar />
-					<h2>CN--Pearl</h2>
-
-					<ul>
-						<li>
-							<Link to="/admin">Admin</Link>
-						</li>
-					</ul>
-
-					<Switch>
-						<Route path="/" exact />
-						<Route path="/admin" exact component={AdminDashboard} />
-						<Route path="/admin/abilities" component={AdminAbilities} />
-						<Route path="/admin/brands" component={AdminBrands} />
-						<Route path="/admin/classes" component={AdminClasses} />
-						<Route path="/admin/modes" component={AdminModes} />
-						<Route path="/admin/specials" component={AdminSpecials} />
-						<Route path="/admin/stages" component={AdminStages} />
-						<Route path="/admin/subs" component={AdminSubs} />
-						<Route path="/admin/weapons" component={AdminWeapons} />
-						<Route path="/admin/weights" component={AdminWeights} />
-						<Route component={NotFound} />
-					</Switch>
+					<section className="main-container">
+						<h2 className="text-center">CN--Pearl</h2>
+						<Switch>
+							{
+								//<Route path="/" exact />
+								//<Route path="/admin" exact component={AdminDashboard} />
+							}
+							<Route path="/" exact component={AdminDashboard} />
+							<Route path="/admin/abilities" component={AdminAbilities} />
+							<Route path="/admin/brands" component={AdminBrands} />
+							<Route path="/admin/classes" component={AdminClasses} />
+							<Route path="/admin/modes" component={AdminModes} />
+							<Route path="/admin/specials" component={AdminSpecials} />
+							<Route path="/admin/stages" component={AdminStages} />
+							<Route path="/admin/subs" component={AdminSubs} />
+							<Route path="/admin/weapons" component={AdminWeapons} />
+							<Route path="/admin/weights" component={AdminWeights} />
+							<Route component={NotFound} />
+						</Switch>
+					</section>
 				</Router>
 			</main>
 		);
