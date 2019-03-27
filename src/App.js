@@ -2,10 +2,8 @@ import dotenv from "dotenv";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
+import { Container } from "reactstrap";
 import Navbar from "./components/Navigation";
-import AdminDashboard from "./modules/admin/AdminDashboard";
-import AdminAbilities from "./modules/admin/AdminAbilities";
-import AdminBrands from "./modules/admin/AdminBrands";
 import AdminClasses from "./modules/admin/AdminClasses";
 import AdminModes from "./modules/admin/AdminModes";
 import AdminSpecials from "./modules/admin/AdminSpecials";
@@ -22,16 +20,10 @@ class App extends React.Component {
 			<main>
 				<Router>
 					<Navbar />
-					<section className="main-container">
-						<h2 className="text-center">CN--Pearl</h2>
+					<Container className="main-container">
+						<h2 className="header text-center">CN--Pearl</h2>
 						<Switch>
-							{
-								//<Route path="/" exact />
-								//<Route path="/admin" exact component={AdminDashboard} />
-							}
-							<Route path="/" exact component={AdminDashboard} />
-							<Route path="/admin/abilities" component={AdminAbilities} />
-							<Route path="/admin/brands" component={AdminBrands} />
+							<Route path="/" exact />
 							<Route path="/admin/classes" component={AdminClasses} />
 							<Route path="/admin/modes" component={AdminModes} />
 							<Route path="/admin/specials" component={AdminSpecials} />
@@ -41,7 +33,7 @@ class App extends React.Component {
 							<Route path="/admin/weights" component={AdminWeights} />
 							<Route component={NotFound} />
 						</Switch>
-					</section>
+					</Container>
 				</Router>
 			</main>
 		);

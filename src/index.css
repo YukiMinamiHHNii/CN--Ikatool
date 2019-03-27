@@ -2,9 +2,11 @@
 	--font-size: 16px;
 	--font-family: "sans-serif";
 	--font-color: #fff;
+	--bg-color: #343a40;
 	--main-color: #f54910;
 	--second-color: #f02d7d;
 	--third-color: #19d719;
+	--pad-btn: #5a6268;
 	--general-spacing: 1rem;
 }
 
@@ -22,6 +24,7 @@ html {
 	font-size: var(--font-size);
 	font-family: var(--font-family);
 	color: var(--font-color);
+	background-color: var(--bg-color);
 }
 
 body {
@@ -36,20 +39,58 @@ main {
 	min-height: 100vh;
 }
 
-.main-color {
+.main-color,
+.primary {
 	background-color: var(--main-color);
 }
 
-.second-color {
+.second-color,
+.secondary {
 	background-color: var(--second-color);
 }
 
-.third-color {
+.third-color,
+.tertiary {
 	background-color: var(--third-color);
+}
+
+.pad-btn {
+	background-color: var(--pad-btn);
+}
+
+.btn-secondary:hover {
+	background-color: var(--third-color);
+}
+
+.header {
+	margin-bottom: 1.5rem;
+}
+
+.spacing {
+	margin: 1rem 0;
 }
 
 a {
 	color: var(--font-color);
+}
+
+a:hover {
+	color: var(--font-color);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.nav-item > .dropdown-menu.show {
+	background-color: var(--second-color);
+}
+
+.nav-item > .dropdown-menu.show > .dropdown-item {
+	background-color: var(--second-color);
+	color: var(--font-color);
+}
+
+.nav-item > .dropdown-menu.show > .dropdown-item:hover {
+	font-weight: bold;
 }
 
 .navbar-toggler {
@@ -63,4 +104,23 @@ a {
 .main-container {
 	padding: 1.5rem;
 	border-radius: 0.5rem;
+}
+
+.modal-header {
+	border: none;
+}
+
+.modal-content{
+	border: none;
+	border-radius: 0.5rem;
+}
+
+.modal-footer{
+	padding-top: 0;
+}
+
+.modal-body,
+.modal-footer {
+	background-color: var(--bg-color);
+	border: none;
 }
