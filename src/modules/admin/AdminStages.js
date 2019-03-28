@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	Row,
-	Table,
 	Button,
 	Modal,
 	ModalHeader,
@@ -12,7 +11,7 @@ import {
 	Label,
 	Input
 } from "reactstrap";
-import {testFunction} from "../../utils/APIUtils";
+import StagesList from "../../components/StagesList";
 
 class AdminStages extends React.Component {
 	constructor() {
@@ -21,43 +20,19 @@ class AdminStages extends React.Component {
 			modal: false
 		};
 	}
-	componentDidMount(){
-		testFunction("testing API");
-	}	
 	toggle = () => {
 		this.setState({ modal: !this.state.modal });
 	};
 	render() {
 		return (
 			<Row>
-				<section className="d-flex flex-fill flex-wrap">
+				<section className="col-sm-12 d-flex flex-wrap">
 					<h2 className="mr-3 header">Stages management</h2>
 					<Button className="header pad-btn" onClick={this.toggle}>
 						Add new stage
 					</Button>
 				</section>
-				<Table dark hover responsive>
-					<thead>
-						<tr>
-							<th>SplatNetID</th>
-							<th>Stage name</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Mark</td>
-							<td>Otto</td>
-						</tr>
-						<tr>
-							<td>Jacob</td>
-							<td>Thornton</td>
-						</tr>
-						<tr>
-							<td>Larry</td>
-							<td>the Bird</td>
-						</tr>
-					</tbody>
-				</Table>
+				<StagesList/>
 				<Modal isOpen={this.state.modal} toggle={this.toggle}>
 					<ModalHeader className="second-color">Modal title</ModalHeader>
 					<ModalBody>
