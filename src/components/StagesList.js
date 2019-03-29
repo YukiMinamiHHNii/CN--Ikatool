@@ -18,6 +18,17 @@ class StagesList extends React.Component {
 				this.setState({ error: error });
 			});
 	}
+	componentDidUpdate(prevProps) {
+		if (this.props.append !== prevProps.append && this.props.append) {
+			getStagesData()
+				.then(stages => {
+					this.setState({ stages: stages });
+				})
+				.catch(error => {
+					this.setState({ error: error });
+				});
+		}
+	}
 	selectedStage = stage => {
 		this.setState({ selectedStage: stage });
 	};
