@@ -110,12 +110,12 @@ a:hover {
 	border: none;
 }
 
-.modal-content{
+.modal-content {
 	border: none;
 	border-radius: 0.5rem;
 }
 
-.modal-footer{
+.modal-footer {
 	padding-top: 0;
 }
 
@@ -123,4 +123,8 @@ a:hover {
 .modal-footer {
 	background-color: var(--bg-color);
 	border: none;
+}
+
+.modal-open {
+	padding: 0;
 }

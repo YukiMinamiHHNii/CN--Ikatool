@@ -20,10 +20,13 @@ class AddStageForm extends React.Component {
 	saveStage = () => {
 		saveStagedata(this.state)
 			.then(response => {
-				return this.props.getResult(response);
+				return this.props.getResult({
+					result: "Stage data added successfully",
+					error: null
+				});
 			})
 			.catch(error => {
-				return this.props.getResult({ error: error });
+				return this.props.getResult({ result: null, error: error });
 			});
 		this.props.hide();
 	};

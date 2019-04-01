@@ -3,10 +3,10 @@ import React from "react";
 export const StageView = props => {
 	return (
 		props.stage && (
-			<article>
-				<h2>{props.stage.name}</h2>
+			<article className="text-center">
+				<h2 className="col-sm-12">{props.stage.name}</h2>
 				<img
-					className="col-sm-12"
+					className="col-sm-12 col-md-6"
 					src={props.stage.thumbnail}
 					alt={props.stage.name}
 				/>
