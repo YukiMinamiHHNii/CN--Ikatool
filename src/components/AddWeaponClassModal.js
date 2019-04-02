@@ -57,7 +57,7 @@ class AddWeaponClassModal extends React.Component {
 					<Button className="pad-btn" onClick={this.saveClass}>
 						Save
 					</Button>
-					<Button className="pad-btn" onClick={this.props.cancel}>
+					<Button className="pad-btn" onClick={this.props.hide}>
 						Cancel
 					</Button>
 				</ModalFooter>
