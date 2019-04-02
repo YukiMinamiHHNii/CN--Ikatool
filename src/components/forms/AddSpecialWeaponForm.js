@@ -11,18 +11,18 @@ import {
 } from "reactstrap";
 import { saveData } from "../../utils/APIUtils";
 
-class AddGameModeForm extends React.Component {
+class AddSpecialWeaponForm extends React.Component {
 	state = {
-		gameModeID: "",
+		specialWeaponID: "",
 		name: "",
-		thumbnail: ""
+		icon: "",
+		altIcon: ""
 	};
-	saveGameMode = () => {
-		console.log(this.state);
-		saveData(this.state, "mode")
+	saveSpecialWeapon = () => {
+		saveData(this.state, "special")
 			.then(response => {
 				return this.props.getResult({
-					result: "Game mode data added successfully",
+					result: "Special Weapon data added successfully",
 					error: null
 				});
 			})
@@ -34,7 +34,9 @@ class AddGameModeForm extends React.Component {
 	input = e => {
 		this.setState({
 			[e.target.name]:
-				e.target.name !== "thumbnail" ? e.target.value : e.target.files[0]
+				e.target.name !== "icon" && e.target.name !== "altIcon"
+					? e.target.value
+					: e.target.files[0]
 		});
 	};
 	render() {
@@ -44,13 +46,13 @@ class AddGameModeForm extends React.Component {
 				<ModalBody>
 					<Form>
 						<FormGroup className="mb-3">
-							<Label for="gameModeID" className="col-sm-12 text-left">
-								GameModeID
+							<Label for="specialWeaponID" className="col-sm-12 text-left">
+								SpecialWeaponID
 							</Label>
 							<Input
 								type="text"
-								name="gameModeID"
-								placeholder="Enter GameModeID"
+								name="specialWeaponID"
+								placeholder="Enter specialWeaponID"
 								onChange={this.input}
 							/>
 						</FormGroup>
@@ -61,20 +63,26 @@ class AddGameModeForm extends React.Component {
 							<Input
 								type="text"
 								name="name"
-								placeholder="Enter game mode name"
+								placeholder="Enter special weapon name"
 								onChange={this.input}
 							/>
 						</FormGroup>
 						<FormGroup className="mb-3">
-							<Label for="thumbnail" className="col-sm-12 text-left">
-								Thumbnail
+							<Label for="icon" className="col-sm-12 text-left">
+								Icon
 							</Label>
-							<Input type="file" name="thumbnail" onChange={this.input} />
+							<Input type="file" name="icon" onChange={this.input} />
+						</FormGroup>
+						<FormGroup className="mb-3">
+							<Label for="altIcon" className="col-sm-12 text-left">
+								AltIcon
+							</Label>
+							<Input type="file" name="altIcon" onChange={this.input} />
 						</FormGroup>
 					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button className="pad-btn" onClick={this.saveGameMode}>
+					<Button className="pad-btn" onClick={this.saveSpecialWeapon}>
 						Save
 					</Button>
 					<Button className="pad-btn" onClick={this.props.hide}>
@@ -86,4 +94,4 @@ class AddGameModeForm extends React.Component {
 	}
 }
 
-export default AddGameModeForm;
+export default AddSpecialWeaponForm;

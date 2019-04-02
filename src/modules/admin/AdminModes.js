@@ -18,7 +18,11 @@ class AdminModes extends React.Component {
 				<ResultAlert data={this.state} />
 				<section className="col-sm-12 d-flex flex-wrap">
 					<h2 className="mr-3 header">Game modes management</h2>
-					<ModalLauncher title="Add new game mode" getResult={this.getResult} operation="gameMode"/>
+					<ModalLauncher
+						title="Add new game mode"
+						getResult={this.getResult}
+						operation="gameMode"
+					/>
 				</section>
 				<GameModesList append={this.state.result} />
 			</Row>

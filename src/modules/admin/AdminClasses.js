@@ -18,7 +18,11 @@ class AdminClasses extends React.Component {
 				<ResultAlert data={this.state} />
 				<section className="col-sm-12 d-flex flex-wrap">
 					<h2 className="mr-3 header">Weapon classes management</h2>
-					<ModalLauncher title="Add new weapon class" getResult={this.getResult} operation="weaponClass" />
+					<ModalLauncher
+						title="Add new weapon class"
+						getResult={this.getResult}
+						operation="weaponClass"
+					/>
 				</section>
 				<WeaponClassesList append={this.state.result} />
 			</Row>

@@ -3,6 +3,8 @@ import { Button, Modal } from "reactstrap";
 import AddStageForm from "./forms/AddStageForm";
 import AddWeaponClassForm from "./forms/AddWeaponClassForm";
 import AddGameModeForm from "./forms/AddGameModeForm";
+import AddSpecialWeaponForm from "./forms/AddSpecialWeaponForm";
+import AddSubWeaponForm from "./forms/AddSubWeaponForm";
 
 class ModalLauncher extends React.Component {
 	state = {
@@ -35,6 +37,24 @@ class ModalLauncher extends React.Component {
 			case "gameMode":
 				modal = (
 					<AddGameModeForm
+						title={this.props.title}
+						getResult={this.props.getResult}
+						hide={this.toggle}
+					/>
+				);
+				break;
+			case "specialWeapon":
+				modal = (
+					<AddSpecialWeaponForm
+						title={this.props.title}
+						getResult={this.props.getResult}
+						hide={this.toggle}
+					/>
+				);
+				break;
+				case "subWeapon":
+				modal = (
+					<AddSubWeaponForm
 						title={this.props.title}
 						getResult={this.props.getResult}
 						hide={this.toggle}
