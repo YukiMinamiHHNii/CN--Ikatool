@@ -1,7 +1,7 @@
 import React from "react";
 import { Table } from "reactstrap";
-import { getStagesData } from "../utils/APIUtils";
-import { StageView } from "./StageView";
+import { getData } from "../../utils/APIUtils";
+import { StageViewer } from "../viewers/StageViewer";
 
 class StagesList extends React.Component {
 	state = {
@@ -10,7 +10,7 @@ class StagesList extends React.Component {
 		selectedStage: null
 	};
 	componentDidMount() {
-		getStagesData()
+		getData("stage")
 			.then(stages => {
 				this.setState({ stages: stages });
 			})
@@ -20,7 +20,7 @@ class StagesList extends React.Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (this.props.append !== prevProps.append && this.props.append) {
-			getStagesData()
+			getData("stage")
 				.then(stages => {
 					this.setState({ stages: stages });
 				})
@@ -53,7 +53,7 @@ class StagesList extends React.Component {
 						})}
 					</tbody>
 				</Table>
-				<StageView stage={this.state.selectedStage} />
+				<StageViewer stage={this.state.selectedStage} />
 			</section>
 		) : (
 			<section className="col-sm-12">

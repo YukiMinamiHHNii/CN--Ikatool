@@ -9,7 +9,7 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveClassData } from "../utils/APIUtils";
+import { saveData } from "../../utils/APIUtils";
 
 class AddWeaponClassModal extends React.Component {
 	state = {
@@ -17,7 +17,7 @@ class AddWeaponClassModal extends React.Component {
 		name: ""
 	};
 	saveClass = () => {
-		saveClassData(this.state)
+		saveData(this.state, "class")
 			.then(response => {
 				return this.props.getResult({
 					result: "Weapon class data added successfully",

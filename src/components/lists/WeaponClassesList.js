@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "reactstrap";
-import { getClassesData } from "../utils/APIUtils";
+import { getData } from "../../utils/APIUtils";
 
 class WeaponClassesList extends React.Component {
 	state = {
@@ -8,7 +8,7 @@ class WeaponClassesList extends React.Component {
 		error: null
 	};
 	componentDidMount() {
-		getClassesData()
+		getData("class")
 			.then(classes => {
 				this.setState({ classes: classes });
 			})
@@ -18,7 +18,7 @@ class WeaponClassesList extends React.Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (this.props.append !== prevProps.append && this.props.append) {
-			getClassesData()
+			getData("class")
 				.then(classes => {
 					this.setState({ classes: classes });
 				})

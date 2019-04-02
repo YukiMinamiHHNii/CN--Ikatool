@@ -1,7 +1,7 @@
 import React from "react";
 import { Row } from "reactstrap";
 import ResultAlert from "../../components/ResultAlert";
-import WeaponClassesList from "../../components/WeaponClassesList";
+import WeaponClassesList from "../../components/lists/WeaponClassesList";
 import ModalLauncher from "../../components/ModalLauncher";
 
 class AdminClasses extends React.Component {

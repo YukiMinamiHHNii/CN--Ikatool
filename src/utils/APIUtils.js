@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const getStagesData = () => {
+export const getData = collection => {
 	return axios
-		.get(`${process.env.REACT_APP_MARINA_ENDPOINT}/data/stage`)
+		.get(`${process.env.REACT_APP_MARINA_ENDPOINT}/data/${collection}`)
 		.then(response => {
 			return response.data;
 		})
@@ -11,38 +11,11 @@ export const getStagesData = () => {
 		});
 };
 
-export const getClassesData = () => {
-	return axios
-		.get(`${process.env.REACT_APP_MARINA_ENDPOINT}/data/class`)
-		.then(response => {
-			return response.data;
-		})
-		.catch(error => {
-			return Promise.reject(`Error while connecting to API - ${error}`);
-		});
-};
-
-
-export const saveStageData = stageData => {
+export const saveData = (data, collection) => {
 	return axios
 		.post(
-			`${process.env.REACT_APP_MARINA_ENDPOINT}/data/stage`,
-			getFormData(stageData),
-			{ headers: { "X-Custom-Header": "someHeader" } }
-		)
-		.then(response => {
-			return response.data;
-		})
-		.catch(error => {
-			return Promise.reject(`Error in operation - ${error}`);
-		});
-};
-
-export const saveClassData = classData => {
-	return axios
-		.post(
-			`${process.env.REACT_APP_MARINA_ENDPOINT}/data/class`,
-			getFormData(classData),
+			`${process.env.REACT_APP_MARINA_ENDPOINT}/data/${collection}`,
+			getFormData(data),
 			{ headers: { "X-Custom-Header": "someHeader" } }
 		)
 		.then(response => {

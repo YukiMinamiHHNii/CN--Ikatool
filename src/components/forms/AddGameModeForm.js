@@ -9,19 +9,19 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveStageData } from "../utils/APIUtils";
+import { saveData } from "../../utils/APIUtils";
 
-class AddStageForm extends React.Component {
+class AddGameModeForm extends React.Component {
 	state = {
-		splatnetID: "",
+		gameModeID: "",
 		name: "",
 		thumbnail: ""
 	};
-	saveStage = () => {
-		saveStageData(this.state)
+	saveGameMode = () => {
+		saveData(this.state, "mode")
 			.then(response => {
 				return this.props.getResult({
-					result: "Stage data added successfully",
+					result: "Game mode data added successfully",
 					error: null
 				});
 			})
@@ -43,24 +43,24 @@ class AddStageForm extends React.Component {
 				<ModalBody>
 					<Form>
 						<FormGroup className="mb-3">
-							<Label for="splatnetID" className="col-sm-12 text-left">
-								SplatNetID
+							<Label for="gameModeID" className="col-sm-12 text-left">
+								GameModeID
 							</Label>
 							<Input
 								type="text"
-								name="splatnetID"
-								placeholder="Enter SplatNetID"
+								name="gameModeID"
+								placeholder="Enter GameModeID"
 								onChange={this.input}
 							/>
 						</FormGroup>
 						<FormGroup className="mb-3">
 							<Label for="name" className="col-sm-12 text-left">
-								Stage name
+								Name
 							</Label>
 							<Input
 								type="text"
 								name="name"
-								placeholder="Enter Stage name"
+								placeholder="Enter game mode name"
 								onChange={this.input}
 							/>
 						</FormGroup>
@@ -73,7 +73,7 @@ class AddStageForm extends React.Component {
 					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button className="pad-btn" onClick={this.saveStage}>
+					<Button className="pad-btn" onClick={this.saveGameMode}>
 						Save
 					</Button>
 					<Button className="pad-btn" onClick={this.props.hide}>
@@ -85,4 +85,4 @@ class AddStageForm extends React.Component {
 	}
 }
 
-export default AddStageForm;
+export default AddGameModeForm;

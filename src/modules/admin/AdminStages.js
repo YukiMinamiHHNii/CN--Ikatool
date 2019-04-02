@@ -1,7 +1,7 @@
 import React from "react";
 import { Row } from "reactstrap";
 import ResultAlert from "../../components/ResultAlert";
-import StagesList from "../../components/StagesList";
+import StagesList from "../../components/lists/StagesList";
 import ModalLauncher from "../../components/ModalLauncher";
 
 class AdminStages extends React.Component {

@@ -1,6 +1,6 @@
 import React from "react";
 
-export const StageView = props => {
+export const StageViewer = props => {
 	return (
 		props.stage && (
 			<article className="text-center">
