@@ -9,7 +9,7 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveStagedata } from "../utils/APIUtils";
+import { saveStageData } from "../utils/APIUtils";
 
 class AddStageForm extends React.Component {
 	state = {
@@ -18,7 +18,7 @@ class AddStageForm extends React.Component {
 		thumbnail: ""
 	};
 	saveStage = () => {
-		saveStagedata(this.state)
+		saveStageData(this.state)
 			.then(response => {
 				return this.props.getResult({
 					result: "Stage data added successfully",

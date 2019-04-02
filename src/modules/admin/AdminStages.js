@@ -18,7 +18,7 @@ class AdminStages extends React.Component {
 				<ResultAlert data={this.state} />
 				<section className="col-sm-12 d-flex flex-wrap">
 					<h2 className="mr-3 header">Stages management</h2>
-					<ModalLauncher title="Add new stage" getResult={this.getResult} />
+					<ModalLauncher title="Add new stage" getResult={this.getResult} operation="stage"/>
 				</section>
 				<StagesList append={this.state.result} />
 			</Row>

@@ -11,11 +11,38 @@ export const getStagesData = () => {
 		});
 };
 
-export const saveStagedata = stageData => {
+export const getClassesData = () => {
+	return axios
+		.get(`${process.env.REACT_APP_MARINA_ENDPOINT}/data/class`)
+		.then(response => {
+			return response.data;
+		})
+		.catch(error => {
+			return Promise.reject(`Error while connecting to API - ${error}`);
+		});
+};
+
+
+export const saveStageData = stageData => {
 	return axios
 		.post(
 			`${process.env.REACT_APP_MARINA_ENDPOINT}/data/stage`,
 			getFormData(stageData),
+			{ headers: { "X-Custom-Header": "someHeader" } }
+		)
+		.then(response => {
+			return response.data;
+		})
+		.catch(error => {
+			return Promise.reject(`Error in operation - ${error}`);
+		});
+};
+
+export const saveClassData = classData => {
+	return axios
+		.post(
+			`${process.env.REACT_APP_MARINA_ENDPOINT}/data/class`,
+			getFormData(classData),
 			{ headers: { "X-Custom-Header": "someHeader" } }
 		)
 		.then(response => {
