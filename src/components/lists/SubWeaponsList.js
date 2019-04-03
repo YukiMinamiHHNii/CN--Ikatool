@@ -56,7 +56,7 @@ class SubWeaponsList extends React.Component {
 						})}
 					</tbody>
 				</Table>
-				<SubWeaponViewer subWeapon={this.state.selectedSubWeapon}/>
+				<SubWeaponViewer subWeapon={this.state.selectedSubWeapon} />
 			</section>
 		) : (
 			<section className="col-sm-12">

@@ -22,11 +22,16 @@ class AddStageForm extends React.Component {
 			.then(response => {
 				return this.props.getResult({
 					result: "Stage data added successfully",
-					error: null
+					error: null,
+					docId: response.docId
 				});
 			})
 			.catch(error => {
-				return this.props.getResult({ result: null, error: error });
+				return this.props.getResult({
+					result: null,
+					error: error,
+					docId: null
+				});
 			});
 		this.props.hide();
 	};

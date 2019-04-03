@@ -7,7 +7,8 @@ import ModalLauncher from "../../components/ModalLauncher";
 class AdminSpecials extends React.Component {
 	state = {
 		result: null,
-		error: null
+		error: null,
+		docId: null
 	};
 	getResult = data => {
 		this.setState({ ...data });
@@ -24,7 +25,9 @@ class AdminSpecials extends React.Component {
 						operation="specialWeapon"
 					/>
 				</section>
-				<SpecialWeaponsList append={this.state.result} />
+				<SpecialWeaponsList
+					append={this.state.docId !== null && this.state.docId}
+				/>
 			</Row>
 		);
 	}

@@ -7,7 +7,8 @@ import ModalLauncher from "../../components/ModalLauncher";
 class AdminModes extends React.Component {
 	state = {
 		result: null,
-		error: null
+		error: null,
+		docId: null
 	};
 	getResult = data => {
 		this.setState({ ...data });
@@ -24,7 +25,7 @@ class AdminModes extends React.Component {
 						operation="gameMode"
 					/>
 				</section>
-				<GameModesList append={this.state.result} />
+				<GameModesList append={this.state.docId !== null && this.state.docId} />
 			</Row>
 		);
 	}

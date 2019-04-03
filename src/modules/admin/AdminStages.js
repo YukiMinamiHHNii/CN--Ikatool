@@ -7,7 +7,8 @@ import ModalLauncher from "../../components/ModalLauncher";
 class AdminStages extends React.Component {
 	state = {
 		result: null,
-		error: null
+		error: null,
+		docId: null
 	};
 	getResult = data => {
 		this.setState({ ...data });
@@ -24,7 +25,7 @@ class AdminStages extends React.Component {
 						operation="stage"
 					/>
 				</section>
-				<StagesList append={this.state.result} />
+				<StagesList append={this.state.docId !== null && this.state.docId} />
 			</Row>
 		);
 	}
