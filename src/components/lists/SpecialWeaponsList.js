@@ -56,7 +56,7 @@ class SpecialWeaponsList extends React.Component {
 						})}
 					</tbody>
 				</Table>
-				<SpecialWeaponViewer specialWeapon={this.state.selectedSpecialWeapon}/>
+				<SpecialWeaponViewer specialWeapon={this.state.selectedSpecialWeapon} />
 			</section>
 		) : (
 			<section className="col-sm-12">

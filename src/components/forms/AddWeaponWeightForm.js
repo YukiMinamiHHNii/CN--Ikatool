@@ -11,15 +11,15 @@ import {
 } from "reactstrap";
 import { saveData } from "../../utils/APIUtils";
 
-class AddWeaponClassForm extends React.Component {
+class AddWeaponWeightForm extends React.Component {
 	state = {
 		name: ""
 	};
-	saveClass = () => {
-		saveData(this.state, "class")
+	saveWeight = () => {
+		saveData(this.state, "weight")
 			.then(response => {
 				return this.props.getResult({
-					result: "Weapon class data added successfully",
+					result: "Weapon weight data added successfully",
 					error: null,
 					docId: response.docId
 				});
@@ -46,19 +46,19 @@ class AddWeaponClassForm extends React.Component {
 					<Form>
 						<FormGroup className="mb-3">
 							<Label for="name" className="col-sm-12 text-left">
-								Class name
+								Weight name
 							</Label>
 							<Input
 								type="text"
 								name="name"
-								placeholder="Enter class name"
+								placeholder="Enter weight name"
 								onChange={this.input}
 							/>
 						</FormGroup>
 					</Form>
 				</ModalBody>
 				<ModalFooter>
-					<Button className="pad-btn" onClick={this.saveClass}>
+					<Button className="pad-btn" onClick={this.saveWeight}>
 						Save
 					</Button>
 					<Button className="pad-btn" onClick={this.props.hide}>
@@ -70,4 +70,4 @@ class AddWeaponClassForm extends React.Component {
 	}
 }
 
-export default AddWeaponClassForm;
+export default AddWeaponWeightForm;
