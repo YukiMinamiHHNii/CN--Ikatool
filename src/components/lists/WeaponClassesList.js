@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "reactstrap";
-import { getData } from "../../utils/APIUtils";
+import { findCollectionData } from "../../daos/FirebaseDAO";
 
 class WeaponClassesList extends React.Component {
 	state = {
@@ -8,7 +8,7 @@ class WeaponClassesList extends React.Component {
 		error: null
 	};
 	componentDidMount() {
-		getData("class")
+		findCollectionData("class")
 			.then(classes => {
 				this.setState({ classes: classes });
 			})
@@ -18,7 +18,7 @@ class WeaponClassesList extends React.Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (this.props.append !== prevProps.append && this.props.append) {
-			getData("class")
+			findCollectionData("class")
 				.then(classes => {
 					this.setState({ classes: classes });
 				})

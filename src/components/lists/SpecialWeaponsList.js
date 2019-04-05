@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "reactstrap";
-import { getData } from "../../utils/APIUtils";
+import { findCollectionData } from "../../daos/FirebaseDAO";
 import { SpecialWeaponViewer } from "../viewers/SpecialWeaponViewer";
 
 class SpecialWeaponsList extends React.Component {
@@ -10,7 +10,7 @@ class SpecialWeaponsList extends React.Component {
 		selectedSpecialWeapon: null
 	};
 	componentDidMount() {
-		getData("special")
+		findCollectionData("special")
 			.then(specialWeapons => {
 				this.setState({ specialWeapons: specialWeapons });
 			})
@@ -20,7 +20,7 @@ class SpecialWeaponsList extends React.Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (this.props.append !== prevProps.append && this.props.append) {
-			getData("special")
+			findCollectionData("special")
 				.then(specialWeapons => {
 					this.setState({ specialWeapons: specialWeapons });
 				})

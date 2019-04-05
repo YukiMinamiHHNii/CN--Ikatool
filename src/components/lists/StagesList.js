@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "reactstrap";
-import { getData } from "../../utils/APIUtils";
+import { findCollectionData } from "../../daos/FirebaseDAO";
 import { StageViewer } from "../viewers/StageViewer";
 
 class StagesList extends React.Component {
@@ -10,7 +10,7 @@ class StagesList extends React.Component {
 		selectedStage: null
 	};
 	componentDidMount() {
-		getData("stage")
+		findCollectionData("stage")
 			.then(stages => {
 				this.setState({ stages: stages });
 			})
@@ -20,7 +20,7 @@ class StagesList extends React.Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (this.props.append !== prevProps.append && this.props.append) {
-			getData("stage")
+			findCollectionData("stage")
 				.then(stages => {
 					this.setState({ stages: stages });
 				})

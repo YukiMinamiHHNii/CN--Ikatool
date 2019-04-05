@@ -38,29 +38,29 @@ class Navigation extends React.Component {
 						</NavItem>
 						<UncontrolledDropdown nav inNavbar>
 							<DropdownToggle nav caret>
-								Admin operations
+								Manage
 							</DropdownToggle>
 							<DropdownMenu right>
 								<Link className="dropdown-item" to="/admin/classes">
-									Manage weapon classes
+									Weapon classes
 								</Link>
 								<Link className="dropdown-item" to="/admin/modes">
-									Manage game modes
+									Game modes
 								</Link>
 								<Link className="dropdown-item" to="/admin/specials">
-									Manage special weapons
+									Special weapons
 								</Link>
 								<Link className="dropdown-item" to="/admin/stages">
-									Manage stages
+									Stages
 								</Link>
 								<Link className="dropdown-item" to="/admin/subs">
-									Manage subweapons
+									Subweapons
 								</Link>
 								<Link className="dropdown-item" to="/admin/weapons">
-									Manage weapons
+									Weapons
 								</Link>
 								<Link className="dropdown-item" to="/admin/weights">
-									Manage weapon weights
+									Weapon weights
 								</Link>
 							</DropdownMenu>
 						</UncontrolledDropdown>

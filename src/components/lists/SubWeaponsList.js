@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "reactstrap";
-import { getData } from "../../utils/APIUtils";
+import { findCollectionData } from "../../daos/FirebaseDAO";
 import { SubWeaponViewer } from "../viewers/SubWeaponViewer";
 
 class SubWeaponsList extends React.Component {
@@ -10,7 +10,7 @@ class SubWeaponsList extends React.Component {
 		selectedSubWeapon: null
 	};
 	componentDidMount() {
-		getData("sub")
+		findCollectionData("sub")
 			.then(subWeapons => {
 				this.setState({ subWeapons: subWeapons });
 			})
@@ -20,7 +20,7 @@ class SubWeaponsList extends React.Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (this.props.append !== prevProps.append && this.props.append) {
-			getData("sub")
+			findCollectionData("sub")
 				.then(subWeapons => {
 					this.setState({ subWeapons: subWeapons });
 				})

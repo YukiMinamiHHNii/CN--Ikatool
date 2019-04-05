@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "reactstrap";
-import { getData } from "../../utils/APIUtils";
+import { findCollectionData } from "../../daos/FirebaseDAO";
 import { GameModeViewer } from "../viewers/GameModeViewer";
 
 class GameModesList extends React.Component {
@@ -10,7 +10,7 @@ class GameModesList extends React.Component {
 		selectedGameMode: null
 	};
 	componentDidMount() {
-		getData("mode")
+		findCollectionData("mode")
 			.then(gameModes => {
 				this.setState({ gameModes: gameModes });
 			})
@@ -20,7 +20,7 @@ class GameModesList extends React.Component {
 	}
 	componentDidUpdate(prevProps) {
 		if (this.props.append !== prevProps.append && this.props.append) {
-			getData("mode")
+			findCollectionData("mode")
 				.then(gameModes => {
 					this.setState({ gameModes: gameModes });
 				})
