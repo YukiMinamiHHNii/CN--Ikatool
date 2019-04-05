@@ -9,14 +9,14 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveData } from "../../utils/APIUtils";
+import { addCollectionData } from "../../daos/FirebaseDAO";
 
 class AddWeaponClassForm extends React.Component {
 	state = {
 		name: ""
 	};
 	saveClass = () => {
-		saveData(this.state, "class")
+		addCollectionData(this.state, "class")
 			.then(response => {
 				return this.props.getResult({
 					result: "Weapon class data added successfully",

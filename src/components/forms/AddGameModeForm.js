@@ -9,7 +9,7 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveData } from "../../utils/APIUtils";
+import { addCollectionData } from "../../daos/FirebaseDAO";
 
 class AddGameModeForm extends React.Component {
 	state = {
@@ -18,8 +18,7 @@ class AddGameModeForm extends React.Component {
 		thumbnail: ""
 	};
 	saveGameMode = () => {
-		console.log(this.state);
-		saveData(this.state, "mode")
+		addCollectionData(this.state, "mode")
 			.then(response => {
 				return this.props.getResult({
 					result: "Game mode data added successfully",

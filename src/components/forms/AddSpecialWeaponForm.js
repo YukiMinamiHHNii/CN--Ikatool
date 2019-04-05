@@ -9,7 +9,7 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveData } from "../../utils/APIUtils";
+import { addCollectionData } from "../../daos/FirebaseDAO";
 
 class AddSpecialWeaponForm extends React.Component {
 	state = {
@@ -19,7 +19,7 @@ class AddSpecialWeaponForm extends React.Component {
 		altIcon: ""
 	};
 	saveSpecialWeapon = () => {
-		saveData(this.state, "special")
+		addCollectionData(this.state, "special")
 			.then(response => {
 				return this.props.getResult({
 					result: "Special Weapon data added successfully",

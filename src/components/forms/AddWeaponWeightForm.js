@@ -9,14 +9,14 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveData } from "../../utils/APIUtils";
+import { addCollectionData } from "../../daos/FirebaseDAO";
 
 class AddWeaponWeightForm extends React.Component {
 	state = {
 		name: ""
 	};
 	saveWeight = () => {
-		saveData(this.state, "weight")
+		addCollectionData(this.state, "weight")
 			.then(response => {
 				return this.props.getResult({
 					result: "Weapon weight data added successfully",

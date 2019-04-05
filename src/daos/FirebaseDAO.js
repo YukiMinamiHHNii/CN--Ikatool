@@ -1,5 +1,6 @@
 import { firebaseApp } from "../utils/FirebaseConfig";
 import { getSingleResult, getMultiResult } from "../utils/FirebaseUtils";
+import crypto from "create-hash";
 import "firebase/firestore";
 import "firebase/storage";
 
@@ -32,6 +33,80 @@ export const findCollectionDataById = (collection, item) => {
 			return updatedResult;
 		})
 		.catch(error => {
-			return Promise.reject({ error: `Backend - ${error}` });
+			return Promise.reject(`Backend - ${error}`);
+		});
+};
+
+export const addCollectionData = (data, collection) => {
+	return uploadImages(data, collection)
+		.then(updatedData => {
+			return saveData(updatedData, collection);
+		})
+		.catch(error => {
+			return Promise.reject(`Backend - ${error}`);
+		});
+};
+
+function uploadImages(data, collection) {
+	let finalArray = [];
+
+	Object.keys(data).forEach(key => {
+		if (data[key] instanceof File) {
+			finalArray.push(
+				firebaseApp
+					.storage()
+					.ref(collection)
+					.child(
+						crypto("md5")
+							.update(data[key].name)
+							.digest("hex")
+					)
+					.put(data[key])
+					.then(result => {
+						return getDownloadURL(result.metadata.fullPath);
+					})
+					.then(url => {
+						data[key] = url;
+						return url;
+					})
+					.catch(error => {
+						return `Backend - Error while uploading ${data[key]} (${error})`;
+					})
+			);
+		}
+	});
+
+	return Promise.all(finalArray)
+		.then(result => {
+			return data;
+		})
+		.catch(error => {
+			return error;
+		});
+}
+
+function getDownloadURL(fullPath) {
+	return firebaseApp
+		.storage()
+		.ref(fullPath)
+		.getDownloadURL()
+		.then(url => {
+			return url;
+		})
+		.catch(error => {
+			return error.code;
+		});
+}
+
+const saveData = (data, collection) => {
+	return firebaseApp
+		.firestore()
+		.collection(collection)
+		.add(data)
+		.then(result => {
+			return { docId: result.id };
+		})
+		.catch(error => {
+			return Promise.reject(`Backend - ${error}`);
 		});
 };

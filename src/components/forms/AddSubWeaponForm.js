@@ -9,7 +9,7 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveData } from "../../utils/APIUtils";
+import { addCollectionData } from "../../daos/FirebaseDAO";
 
 class AddSubWeaponForm extends React.Component {
 	state = {
@@ -19,7 +19,7 @@ class AddSubWeaponForm extends React.Component {
 		altIcon: ""
 	};
 	saveSubWeapon = () => {
-		saveData(this.state, "sub")
+		addCollectionData(this.state, "sub")
 			.then(response => {
 				return this.props.getResult({
 					result: "Subweapon data added successfully",

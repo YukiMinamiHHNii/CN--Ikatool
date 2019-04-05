@@ -9,7 +9,7 @@ import {
 	Input,
 	Button
 } from "reactstrap";
-import { saveData } from "../../utils/APIUtils";
+import { addCollectionData } from "../../daos/FirebaseDAO";
 
 class AddStageForm extends React.Component {
 	state = {
@@ -18,7 +18,7 @@ class AddStageForm extends React.Component {
 		thumbnail: ""
 	};
 	saveStage = () => {
-		saveData(this.state, "stage")
+		addCollectionData(this.state, "stage")
 			.then(response => {
 				return this.props.getResult({
 					result: "Stage data added successfully",
