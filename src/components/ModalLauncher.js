@@ -6,6 +6,7 @@ import AddGameModeForm from "./forms/AddGameModeForm";
 import AddSpecialWeaponForm from "./forms/AddSpecialWeaponForm";
 import AddSubWeaponForm from "./forms/AddSubWeaponForm";
 import AddWeaponWeightForm from "./forms/AddWeaponWeightForm";
+import AddWeaponForm from "./forms/AddWeaponForm";
 
 class ModalLauncher extends React.Component {
 	state = {
@@ -53,7 +54,7 @@ class ModalLauncher extends React.Component {
 					/>
 				);
 				break;
-				case "subWeapon":
+			case "subWeapon":
 				modal = (
 					<AddSubWeaponForm
 						title={this.props.title}
@@ -62,9 +63,18 @@ class ModalLauncher extends React.Component {
 					/>
 				);
 				break;
-				case "weight":
+			case "weight":
 				modal = (
 					<AddWeaponWeightForm
+						title={this.props.title}
+						getResult={this.props.getResult}
+						hide={this.toggle}
+					/>
+				);
+				break;
+			case "weapon":
+				modal = (
+					<AddWeaponForm
 						title={this.props.title}
 						getResult={this.props.getResult}
 						hide={this.toggle}
