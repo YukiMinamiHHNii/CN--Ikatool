@@ -32,7 +32,7 @@ class Navigation extends React.Component {
 				<Collapse isOpen={this.state.isOpen} navbar>
 					<Nav className="ml-auto" navbar>
 						<NavItem>
-							<Link to="/" className="nav-link">
+							<Link to="/login" className="nav-link">
 								Login
 							</Link>
 						</NavItem>

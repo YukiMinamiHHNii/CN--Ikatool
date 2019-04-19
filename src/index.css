@@ -70,6 +70,14 @@ main {
 	margin: 1rem 0;
 }
 
+.highlight {
+	color: var(--second-color);
+}
+
+.highlight:hover {
+	color: var(--third-color);
+}
+
 a {
 	color: var(--font-color);
 }
