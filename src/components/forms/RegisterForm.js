@@ -22,6 +22,11 @@ class RegisterForm extends React.Component {
 			.auth()
 			.createUserWithEmailAndPassword(this.state.mail, this.state.pass)
 			.then(result => {
+				return firebaseApp.auth().currentUser.updateProfile({
+					displayName: this.state.username
+				});
+			})
+			.then(() => {
 				this.props.history.push("/");
 			})
 			.catch(error => {

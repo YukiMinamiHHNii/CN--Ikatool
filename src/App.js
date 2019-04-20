@@ -34,15 +34,13 @@ class App extends React.Component {
 		return (
 			<main>
 				<Router>
-					<Navbar />
+					<Navbar session={this.state.authUser} />
 					<Container className="main-container">
-						<h2 className="header text-center">
-							CN--Pearl
-						</h2>
+						<h2 className="header text-center">CN--Pearl</h2>
 						<Switch>
 							<Route path="/" exact component={Landing} />
-							<Route path="/login" exact component={Login} />
-							<Route path="/register" exact component={Register} />
+							<Route path="/login" component={Login} />
+							<Route path="/register" component={Register} />
 							<Route path="/admin/classes" component={AdminClasses} />
 							<Route path="/admin/modes" component={AdminModes} />
 							<Route path="/admin/specials" component={AdminSpecials} />
