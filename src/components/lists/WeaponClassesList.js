@@ -3,6 +3,7 @@ import { Table } from "reactstrap";
 import { findCollectionData } from "../../daos/FirebaseDAO";
 
 class WeaponClassesList extends React.Component {
+	mounted = true;
 	state = {
 		classes: [],
 		error: null
@@ -10,10 +11,10 @@ class WeaponClassesList extends React.Component {
 	componentDidMount() {
 		findCollectionData("class")
 			.then(classes => {
-				this.setState({ classes: classes });
+				if (this.mounted) this.setState({ classes: classes });
 			})
 			.catch(error => {
-				this.setState({ error: error });
+				if (this.mounted) this.setState({ error: error });
 			});
 	}
 	componentDidUpdate(prevProps) {
@@ -26,6 +27,9 @@ class WeaponClassesList extends React.Component {
 					this.setState({ error: error });
 				});
 		}
+	}
+	componentWillUnmount() {
+		this.mounted = false;
 	}
 	render() {
 		return !this.state.error ? (

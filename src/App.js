@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import { Container } from "reactstrap";
+import * as Routes from "./utils/Routes";
 import Navbar from "./components/Navigation";
 import Landing from "./modules/Landing";
 import Login from "./modules/session/Login";
@@ -14,41 +15,29 @@ import AdminStages from "./modules/admin/AdminStages";
 import AdminSubs from "./modules/admin/AdminSubs";
 import AdminWeapons from "./modules/admin/AdminWeapons";
 import AdminWeights from "./modules/admin/AdminWeights";
-import { firebaseApp } from "./utils/FirebaseConfig";
-import "firebase/auth";
 
 dotenv.config();
 
 class App extends React.Component {
-	state = {
-		authUser: null
-	};
-	componentDidMount() {
-		firebaseApp.auth().onAuthStateChanged(authUser => {
-			authUser
-				? this.setState({ authUser })
-				: this.setState({ authUser: null });
-		});
-	}
 	render() {
 		return (
 			<main>
 				<Router>
-					<Navbar session={this.state.authUser} />
+					<Navbar />
 					<Container className="main-container">
 						<h2 className="header text-center">CN--Pearl</h2>
 						<Switch>
-							<Route path="/" exact component={Landing} />
-							<Route path="/login" component={Login} />
-							<Route path="/register" component={Register} />
-							<Route path="/admin/classes" component={AdminClasses} />
-							<Route path="/admin/modes" component={AdminModes} />
-							<Route path="/admin/specials" component={AdminSpecials} />
-							<Route path="/admin/stages" component={AdminStages} />
-							<Route path="/admin/subs" component={AdminSubs} />
-							<Route path="/admin/weapons" component={AdminWeapons} />
-							<Route path="/admin/weights" component={AdminWeights} />
-							<Route path="/admin/weights" component={AdminWeights} />
+							<Route path={Routes.INDEX} exact component={Landing} />
+							<Route path={Routes.HOME} exact component={Landing} />
+							<Route path={Routes.LOGIN} component={Login} />
+							<Route path={Routes.REGISTER} component={Register} />
+							<Route path={Routes.ADM_CLASSES} component={AdminClasses} />
+							<Route path={Routes.ADM_MODES} component={AdminModes} />
+							<Route path={Routes.ADM_SPECIALS} component={AdminSpecials} />
+							<Route path={Routes.ADM_STAGES} component={AdminStages} />
+							<Route path={Routes.ADM_SUBS} component={AdminSubs} />
+							<Route path={Routes.ADM_WEAPONS} component={AdminWeapons} />
+							<Route path={Routes.ADM_WEIGHTS} component={AdminWeights} />
 							<Route component={NotFound} />
 						</Switch>
 					</Container>

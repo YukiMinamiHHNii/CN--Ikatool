@@ -1,0 +1,11 @@
+export const INDEX = "/";
+export const HOME = "/home";
+export const LOGIN = "/login";
+export const REGISTER = "/register";
+export const ADM_CLASSES = "/admin/classes";
+export const ADM_MODES = "/admin/modes";
+export const ADM_SPECIALS = "/admin/specials";
+export const ADM_STAGES = "/admin/stages";
+export const ADM_SUBS = "/admin/subs";
+export const ADM_WEAPONS = "/admin/weapons";
+export const ADM_WEIGHTS = "/admin/weights";
