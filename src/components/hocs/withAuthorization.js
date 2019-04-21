@@ -15,11 +15,17 @@ const withAuthorization = (Component, condition) => {
 				this.props.history.push(INDEX);
 			}
 		}
+		checkAuth(authUser) {
+			return authUser
+				? this.setState({
+						auth: true,
+						name: authUser.displayName ? authUser.displayName : authUser.email
+				  })
+				: this.setState({ auth: false, name: null });
+		}
 		componentDidMount() {
 			firebaseApp.auth().onAuthStateChanged(authUser => {
-				authUser
-					? this.setState({ auth: true, name: authUser.displayName })
-					: this.setState({ auth: false });
+				this.checkAuth(authUser);
 				this.checkCondition(authUser);
 			});
 		}

@@ -3,10 +3,10 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
 import { firebaseApp } from "../../utils/FirebaseConfig";
 import "firebase/auth";
+import { HOME } from "../../utils/Routes";
 
 class LoginForm extends React.Component {
 	state = {
-		username: "",
 		mail: "",
 		pass: "",
 		confirmPass: ""
@@ -21,10 +21,13 @@ class LoginForm extends React.Component {
 			.auth()
 			.signInWithEmailAndPassword(this.state.mail, this.state.pass)
 			.then(result => {
-				this.props.history.push("/");
+				this.props.history.push(HOME);
 			})
 			.catch(error => {
-				this.props.getResult({ result: null, error: "Incorrect mail or password" });
+				this.props.getResult({
+					result: null,
+					error: "Incorrect mail or password"
+				});
 			});
 	};
 	render() {
@@ -48,7 +51,10 @@ class LoginForm extends React.Component {
 					</Button>
 				</Form>
 				<h4 className="text-center mt-3 mb-0">
-					Don't have an account? Create one, <Link to="/register" className="highlight">here</Link>
+					Don't have an account? Create one,{" "}
+					<Link to="/register" className="highlight">
+						here
+					</Link>
 				</h4>
 			</section>
 		);
