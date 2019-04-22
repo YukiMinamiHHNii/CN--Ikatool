@@ -7,8 +7,7 @@ import { INDEX } from "../../utils/Routes";
 const withAuthorization = (Component, condition) => {
 	class WithAuthorization extends React.Component {
 		state = {
-			auth: false,
-			name: null
+			auth: false
 		};
 		checkCondition(authUser) {
 			if (!condition(authUser)) {
@@ -18,10 +17,9 @@ const withAuthorization = (Component, condition) => {
 		checkAuth(authUser) {
 			return authUser
 				? this.setState({
-						auth: true,
-						name: authUser.displayName ? authUser.displayName : authUser.email
+						auth: true
 				  })
-				: this.setState({ auth: false, name: null });
+				: this.setState({ auth: false });
 		}
 		componentDidMount() {
 			firebaseApp.auth().onAuthStateChanged(authUser => {
@@ -30,13 +28,7 @@ const withAuthorization = (Component, condition) => {
 			});
 		}
 		render() {
-			return (
-				<Component
-					session={this.state.auth}
-					name={this.state.name}
-					{...this.props}
-				/>
-			);
+			return <Component access={this.state.auth} {...this.props} />;
 		}
 	}
 

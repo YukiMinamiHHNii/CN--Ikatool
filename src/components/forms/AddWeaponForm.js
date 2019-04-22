@@ -16,10 +16,10 @@ class AddWeaponForm extends React.Component {
 	state = {
 		splatnetID: "",
 		name: "",
-		selectedclass: null,
-		selectedspecial: null,
-		selectedsub: null,
-		selectedweight: null
+		class: null,
+		special: null,
+		sub: null,
+		weight: null
 	};
 	saveWeapon = () => {
 		addCollectionData(this.state, "weapon")

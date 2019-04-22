@@ -16,33 +16,37 @@ import AdminSubs from "./modules/admin/AdminSubs";
 import AdminWeapons from "./modules/admin/AdminWeapons";
 import AdminWeights from "./modules/admin/AdminWeights";
 
+import { Session } from "./utils/Session";
+
 dotenv.config();
 
 class App extends React.Component {
 	render() {
 		return (
-			<main>
-				<Router>
-					<Navbar />
-					<Container className="main-container">
-						<h2 className="header text-center">CN--Pearl</h2>
-						<Switch>
-							<Route path={Routes.INDEX} exact component={Landing} />
-							<Route path={Routes.HOME} exact component={Landing} />
-							<Route path={Routes.LOGIN} component={Login} />
-							<Route path={Routes.REGISTER} component={Register} />
-							<Route path={Routes.ADM_CLASSES} component={AdminClasses} />
-							<Route path={Routes.ADM_MODES} component={AdminModes} />
-							<Route path={Routes.ADM_SPECIALS} component={AdminSpecials} />
-							<Route path={Routes.ADM_STAGES} component={AdminStages} />
-							<Route path={Routes.ADM_SUBS} component={AdminSubs} />
-							<Route path={Routes.ADM_WEAPONS} component={AdminWeapons} />
-							<Route path={Routes.ADM_WEIGHTS} component={AdminWeights} />
-							<Route component={NotFound} />
-						</Switch>
-					</Container>
-				</Router>
-			</main>
+			<Session>
+				<main>
+					<Router>
+						<Navbar />
+						<Container className="main-container">
+							<h2 className="header text-center">CN--Pearl</h2>
+							<Switch>
+								<Route path={Routes.INDEX} exact component={Landing} />
+								<Route path={Routes.HOME} exact component={Landing} />
+								<Route path={Routes.LOGIN} component={Login} />
+								<Route path={Routes.REGISTER} component={Register} />
+								<Route path={Routes.ADM_CLASSES} component={AdminClasses} />
+								<Route path={Routes.ADM_MODES} component={AdminModes} />
+								<Route path={Routes.ADM_SPECIALS} component={AdminSpecials} />
+								<Route path={Routes.ADM_STAGES} component={AdminStages} />
+								<Route path={Routes.ADM_SUBS} component={AdminSubs} />
+								<Route path={Routes.ADM_WEAPONS} component={AdminWeapons} />
+								<Route path={Routes.ADM_WEIGHTS} component={AdminWeights} />
+								<Route component={NotFound} />
+							</Switch>
+						</Container>
+					</Router>
+				</main>
+			</Session>
 		);
 	}
 }

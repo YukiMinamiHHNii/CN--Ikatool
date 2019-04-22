@@ -8,14 +8,13 @@ class CollectionDropdown extends React.Component {
 		items: []
 	};
 	componentDidMount() {
-		findCollectionData(this.props.collection)
-			.then(data => {
-				this.setState({ items: data });
-			})
+		findCollectionData(this.props.collection).then(data => {
+			this.setState({ items: data });
+		});
 	}
 	select = e => {
 		this.props.selection({
-			[`selected${this.props.collection}`]:
+			[this.props.collection]:
 				e.target.value !== "placeholder"
 					? firebase.firestore().doc(e.target.value)
 					: null
