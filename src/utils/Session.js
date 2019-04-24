@@ -3,14 +3,14 @@ import React from "react";
 export const SessionContext = React.createContext();
 
 const INITIAL_STATE = {
-	userID: null,
+	userId: null,
 	profile: {
 		username: null,
 		avatar: null,
 		favoriteWeapon: null,
 		favoriteStage: null
 	},
-	operations: []
+	permissions: []
 };
 
 export class Session extends React.Component {

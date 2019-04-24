@@ -1,6 +1,6 @@
-import firebase from "firebase/app";
+const firebase = require("firebase/app");
 
-export const getSingleResult = doc => {
+exports.getSingleResult = doc => {
 	let result = doc.data();
 	if (result) {
 		return getReferenceData(result).then(updatedResult => {
@@ -26,6 +26,12 @@ function getReferenceData(data) {
 						data[key] = { error: `Backend - ${error}` };
 					})
 			);
+		} else if (data[key] instanceof Array) {
+			refArray.push(
+				checkArrayData(data[key]).then(result => {
+					return (data[key] = result);
+				})
+			);
 		}
 	}
 
@@ -34,7 +40,33 @@ function getReferenceData(data) {
 	});
 }
 
-export const getMultiResult = querySnapshot => {
+function checkArrayData(array) {
+	let refArray = [];
+	array.forEach(item => {
+		if (item instanceof firebase.firestore.DocumentReference) {
+			refArray.push(
+				item
+					.get()
+					.then(result => {
+						let data = result.data();
+						data.docId = item.id;
+						return data;
+					})
+					.catch(error => {
+						return { error: `Backend - ${error}` };
+					})
+			);
+		} else {
+			refArray.push(item);
+		}
+	});
+
+	return Promise.all(refArray).then(result => {
+		return result;
+	});
+}
+
+exports.getMultiResult = querySnapshot => {
 	let result = [],
 		resultSet;
 

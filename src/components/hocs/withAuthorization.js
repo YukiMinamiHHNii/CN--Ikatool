@@ -22,10 +22,13 @@ const withAuthorization = (Component, condition) => {
 				: this.setState({ auth: false });
 		}
 		componentDidMount() {
-			firebaseApp.auth().onAuthStateChanged(authUser => {
+			this.listener=firebaseApp.auth().onAuthStateChanged(authUser => {
 				this.checkAuth(authUser);
 				this.checkCondition(authUser);
 			});
+		}
+		componentWillUnmount(){
+			this.listener();
 		}
 		render() {
 			return <Component access={this.state.auth} {...this.props} />;

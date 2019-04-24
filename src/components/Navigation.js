@@ -5,10 +5,7 @@ import {
 	NavbarToggler,
 	Nav,
 	NavItem,
-	NavLink,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu
+	NavLink
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import * as Routes from "../utils/Routes";
@@ -16,6 +13,7 @@ import withAuthorization from "./hocs/withAuthorization";
 import { firebaseApp } from "../utils/FirebaseConfig";
 import "firebase/auth";
 import { SessionContext } from "../utils/Session";
+import { Section, SubSection } from "./nav/NavElements";
 
 class Navigation extends React.Component {
 	state = {
@@ -35,6 +33,7 @@ class Navigation extends React.Component {
 				return this.props.history.push(Routes.INDEX);
 			});
 	};
+	
 	render() {
 		return (
 			<SessionContext.Consumer>
@@ -45,10 +44,10 @@ class Navigation extends React.Component {
 						</Link>
 						<NavbarToggler onClick={this.toggle} />
 						<Collapse isOpen={this.state.isOpen} navbar>
-							{this.props.session ? (
+							{session.userId ? (
 								<LoggedNav
-									session={this.props.session}
 									name={session.profile.username}
+									permissions={session.permissions}
 									signOut={this.signOut}
 								/>
 							) : (
@@ -80,34 +79,14 @@ const LoggedNav = props => {
 					{props.name}
 				</Link>
 			</NavItem>
-			<UncontrolledDropdown nav inNavbar>
-				<DropdownToggle nav caret>
-					Manage
-				</DropdownToggle>
-				<DropdownMenu right>
-					<Link className="dropdown-item" to={Routes.ADM_CLASSES}>
-						Weapon classes
-					</Link>
-					<Link className="dropdown-item" to={Routes.ADM_MODES}>
-						Game modes
-					</Link>
-					<Link className="dropdown-item" to={Routes.ADM_SPECIALS}>
-						Special weapons
-					</Link>
-					<Link className="dropdown-item" to={Routes.ADM_STAGES}>
-						Stages
-					</Link>
-					<Link className="dropdown-item" to={Routes.ADM_SUBS}>
-						Subweapons
-					</Link>
-					<Link className="dropdown-item" to={Routes.ADM_WEAPONS}>
-						Weapons
-					</Link>
-					<Link className="dropdown-item" to={Routes.ADM_WEIGHTS}>
-						Weapon weights
-					</Link>
-				</DropdownMenu>
-			</UncontrolledDropdown>
+			<Section
+				title="Manage"
+				permissions={props.permissions}
+				operation={"MOD-001"}
+			>
+				<SubSection title="Weapon Classes" permissions={props.permissions} operation={"MOD-003"} route={Routes.ADM_CLASSES}/>
+				<SubSection title="Weapons" permissions={props.permissions} operation={"MOD-002"} route={Routes.ADM_WEAPONS}/>
+			</Section>
 			<NavItem>
 				<NavLink onClick={props.signOut}>Sign out</NavLink>
 			</NavItem>

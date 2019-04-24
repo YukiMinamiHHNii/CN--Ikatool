@@ -36,5 +36,5 @@ class AdminClasses extends React.Component {
 
 export default withAuthorization(
 	AdminClasses,
-	authUser => authUser.displayName === "YukiMinami2"
+	authUser => authUser && authUser.displayName === "YukiMinami2"
 );

@@ -3,6 +3,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import { firebaseApp } from "../../utils/FirebaseConfig";
 import "firebase/auth";
+import { findCollectionDataById, saveDataWithId } from "../../daos/FirebaseDAO";
 import { HOME } from "../../utils/Routes";
 import { SessionContext } from "../../utils/Session";
 
@@ -24,9 +25,7 @@ class RegisterForm extends React.Component {
 			.auth()
 			.createUserWithEmailAndPassword(this.state.mail, this.state.pass)
 			.then(result => {
-				return this.context.updateSession({
-					profile: { username: this.state.username }
-				});
+				return this.initNewUser(result.user);
 			})
 			.then(() => {
 				this.props.history.push(HOME);
@@ -35,6 +34,35 @@ class RegisterForm extends React.Component {
 				this.props.getResult({ result: null, error: error.message });
 			});
 		e.preventDefault();
+	};
+	initNewUser = user => {
+		return findCollectionDataById("users", "default")
+			.then(defaultUser => {
+				return defaultUser.permissions;
+			})
+			.then(permissions => {
+				return saveDataWithId("users", this.state.mail, {
+					profile: {
+						username: this.state.username,
+						avatar: null,
+						favoriteWeapon: null,
+						favoriteStage: null
+					},
+					permissions: permissions
+				});
+			})
+			.then(registeredUser => {
+				return this.context.updateSession({
+					userId: registeredUser.docId,
+					profile: registeredUser.profile,
+					permissions: registeredUser.permissions
+				});
+			})
+			.catch(error => {
+				return {
+					message: `Error while registering new user - ${error.message}`
+				};
+			});
 	};
 	render() {
 		return (
