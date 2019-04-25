@@ -9,7 +9,8 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import * as Routes from "../utils/Routes";
-import withAuthorization from "./hocs/withAuthorization";
+import * as Operations from "../utils/Operations";
+import { withRouter } from "react-router-dom";
 import { firebaseApp } from "../utils/FirebaseConfig";
 import "firebase/auth";
 import { SessionContext } from "../utils/Session";
@@ -33,7 +34,7 @@ class Navigation extends React.Component {
 				return this.props.history.push(Routes.INDEX);
 			});
 	};
-	
+
 	render() {
 		return (
 			<SessionContext.Consumer>
@@ -81,11 +82,19 @@ const LoggedNav = props => {
 			</NavItem>
 			<Section
 				title="Manage"
-				permissions={props.permissions}
-				operation={"MOD-001"}
+				operation={Operations.MGT_MOD}
 			>
-				<SubSection title="Weapon Classes" permissions={props.permissions} operation={"MOD-003"} route={Routes.ADM_CLASSES}/>
-				<SubSection title="Weapons" permissions={props.permissions} operation={"MOD-002"} route={Routes.ADM_WEAPONS}/>
+				<SubSection
+					title="Weapon Classes"
+					permissions={props.permissions}
+					operation={Operations.MGT_CLASSES}
+					route={Routes.ADM_CLASSES}
+				/>
+				<SubSection
+					title="Game Modes"
+					operation={Operations.MGT_MODES}
+					route={Routes.ADM_MODES}
+				/>
 			</Section>
 			<NavItem>
 				<NavLink onClick={props.signOut}>Sign out</NavLink>
@@ -96,4 +105,4 @@ const LoggedNav = props => {
 
 Navigation.contextType = SessionContext;
 
-export default withAuthorization(Navigation, () => true);
+export default withRouter(Navigation);

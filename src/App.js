@@ -41,6 +41,7 @@ class App extends React.Component {
 								<Route path={Routes.ADM_SUBS} component={AdminSubs} />
 								<Route path={Routes.ADM_WEAPONS} component={AdminWeapons} />
 								<Route path={Routes.ADM_WEIGHTS} component={AdminWeights} />
+								<Route path={Routes.UNAUTHORIZED} component={Unauthorized} />
 								<Route component={NotFound} />
 							</Switch>
 						</Container>
@@ -53,7 +54,13 @@ class App extends React.Component {
 
 const NotFound = () => (
 	<h2 className="text-center">
-		The content you are looking for is not here...
+		The content you are looking for is not here... くコ:彡
+	</h2>
+);
+
+const Unauthorized = () => (
+	<h2 className="text-center">
+		You are not authorized to see this content... くコ:彡
 	</h2>
 );
 

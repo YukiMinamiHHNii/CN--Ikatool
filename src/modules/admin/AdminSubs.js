@@ -3,6 +3,8 @@ import { Row } from "reactstrap";
 import ResultAlert from "../../components/ResultAlert";
 import SubWeaponsList from "../../components/lists/SubWeaponsList";
 import ModalLauncher from "../../components/ModalLauncher";
+import withAuthorization from "../../components/hocs/withAuthorization";
+import * as Operations from "../../utils/Operations";
 
 class AdminSubs extends React.Component {
 	state = {
@@ -33,4 +35,4 @@ class AdminSubs extends React.Component {
 	}
 }
 
-export default AdminSubs;
+export default withAuthorization(AdminSubs, Operations.MGT_SUBS);

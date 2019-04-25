@@ -4,6 +4,7 @@ import ResultAlert from "../../components/ResultAlert";
 import WeaponClassesList from "../../components/lists/WeaponClassesList";
 import ModalLauncher from "../../components/ModalLauncher";
 import withAuthorization from "../../components/hocs/withAuthorization";
+import * as Operations from "../../utils/Operations";
 
 class AdminClasses extends React.Component {
 	state = {
@@ -34,7 +35,4 @@ class AdminClasses extends React.Component {
 	}
 }
 
-export default withAuthorization(
-	AdminClasses,
-	authUser => authUser && authUser.displayName === "YukiMinami2"
-);
+export default withAuthorization(AdminClasses, Operations.MGT_CLASSES);

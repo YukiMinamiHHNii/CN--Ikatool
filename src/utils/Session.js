@@ -1,4 +1,7 @@
 import React from "react";
+import { firebaseApp } from "./FirebaseConfig";
+import "firebase/auth";
+import { findCollectionDataById } from "../daos/FirebaseDAO";
 
 export const SessionContext = React.createContext();
 
@@ -18,12 +21,38 @@ export class Session extends React.Component {
 
 	updateSession = updatedInfo => {
 		let update = Object.assign({}, this.state, updatedInfo);
+		localStorage.setItem("session", JSON.stringify(update)); //Need it to speed up auth validation HOC
 		return this.setState({ ...update });
 	};
 
 	clearSession = () => {
+		localStorage.clear();
 		this.setState(INITIAL_STATE);
 	};
+
+	initSession = data => {
+		return findCollectionDataById("users", data.email)
+			.then(userData => {
+				return this.updateSession({
+					userId: userData.docId,
+					profile: userData.profile,
+					permissions: userData.permissions
+				});
+			})
+			.catch(error => {
+				this.clearSession();
+			});
+	};
+
+	componentDidMount() {
+		this.listener = firebaseApp.auth().onAuthStateChanged(authUser => {
+			return authUser ? this.initSession(authUser) : this.clearSession;
+		});
+	}
+
+	componentWillUnmount() {
+		this.listener();
+	}
 
 	render() {
 		return (

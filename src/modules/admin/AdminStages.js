@@ -3,6 +3,8 @@ import { Row } from "reactstrap";
 import ResultAlert from "../../components/ResultAlert";
 import StagesList from "../../components/lists/StagesList";
 import ModalLauncher from "../../components/ModalLauncher";
+import withAuthorization from "../../components/hocs/withAuthorization";
+import * as Operations from "../../utils/Operations";
 
 class AdminStages extends React.Component {
 	state = {
@@ -31,4 +33,4 @@ class AdminStages extends React.Component {
 	}
 }
 
-export default AdminStages;
+export default withAuthorization(AdminStages, Operations.MGT_STAGES);

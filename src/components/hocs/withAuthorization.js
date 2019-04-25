@@ -1,37 +1,22 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { firebaseApp } from "../../utils/FirebaseConfig";
-import "firebase/auth";
-import { INDEX } from "../../utils/Routes";
+import * as Routes from "../../utils/Routes";
 
-const withAuthorization = (Component, condition) => {
+const withAuthorization = (Component, operation) => {
 	class WithAuthorization extends React.Component {
-		state = {
-			auth: false
+		findPermission = permissions => {
+			return permissions.findIndex(item => item.docId === operation) > -1;
 		};
-		checkCondition(authUser) {
-			if (!condition(authUser)) {
-				this.props.history.push(INDEX);
+		componentDidMount() {
+			let sessionData = JSON.parse(localStorage.getItem("session")); //Need it because this operation can't wait until firebase user is loaded
+			if (!sessionData || !sessionData.userId) {
+				this.props.history.push(Routes.LOGIN);
+			} else if (!this.findPermission(sessionData.permissions, operation)) {
+				this.props.history.push(Routes.UNAUTHORIZED);
 			}
 		}
-		checkAuth(authUser) {
-			return authUser
-				? this.setState({
-						auth: true
-				  })
-				: this.setState({ auth: false });
-		}
-		componentDidMount() {
-			this.listener=firebaseApp.auth().onAuthStateChanged(authUser => {
-				this.checkAuth(authUser);
-				this.checkCondition(authUser);
-			});
-		}
-		componentWillUnmount(){
-			this.listener();
-		}
 		render() {
-			return <Component access={this.state.auth} {...this.props} />;
+			return <Component {...this.props} />;
 		}
 	}
 

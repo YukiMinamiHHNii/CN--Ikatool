@@ -5,7 +5,6 @@ import { firebaseApp } from "../../utils/FirebaseConfig";
 import "firebase/auth";
 import { HOME } from "../../utils/Routes";
 import { SessionContext } from "../../utils/Session";
-import { findCollectionDataById } from "../../daos/FirebaseDAO";
 
 class LoginForm extends React.Component {
 	state = {
@@ -22,20 +21,9 @@ class LoginForm extends React.Component {
 			.auth()
 			.signInWithEmailAndPassword(this.state.mail, this.state.pass)
 			.then(data => {
-				return findCollectionDataById("users", data.user.email);
-			})
-			.then(userData => {
-				return this.context.updateSession({
-					userId: userData.docId,
-					profile: userData.profile,
-					permissions: userData.permissions
-				});
-			})
-			.then(() => {
 				this.props.history.push(HOME);
 			})
 			.catch(error => {
-				console.log(error);
 				this.props.getResult({
 					result: null,
 					error: "Incorrect mail or password"

@@ -3,6 +3,8 @@ import { Row } from "reactstrap";
 import ResultAlert from "../../components/ResultAlert";
 import GameModesList from "../../components/lists/GameModesList";
 import ModalLauncher from "../../components/ModalLauncher";
+import withAuthorization from "../../components/hocs/withAuthorization";
+import * as Operations from "../../utils/Operations";
 
 class AdminModes extends React.Component {
 	state = {
@@ -31,4 +33,4 @@ class AdminModes extends React.Component {
 	}
 }
 
-export default AdminModes;
+export default withAuthorization(AdminModes, Operations.MGT_MODES);

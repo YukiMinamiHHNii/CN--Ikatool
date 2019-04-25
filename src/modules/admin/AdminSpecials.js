@@ -3,6 +3,8 @@ import { Row } from "reactstrap";
 import ResultAlert from "../../components/ResultAlert";
 import SpecialWeaponsList from "../../components/lists/SpecialWeaponsList";
 import ModalLauncher from "../../components/ModalLauncher";
+import withAuthorization from "../../components/hocs/withAuthorization";
+import * as Operations from "../../utils/Operations";
 
 class AdminSpecials extends React.Component {
 	state = {
@@ -33,4 +35,4 @@ class AdminSpecials extends React.Component {
 	}
 }
 
-export default AdminSpecials;
+export default withAuthorization(AdminSpecials, Operations.MGT_SPECIALS);

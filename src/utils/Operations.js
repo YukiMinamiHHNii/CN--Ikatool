@@ -1,0 +1,16 @@
+export const USR_MOD="MOD-001";
+export const USR_PROFILE="USR-001";
+export const USR_BATTLES="USR-002";
+export const USR_RANK_X="USR-003";
+export const MGT_MOD="MOD-002";
+export const MGT_CLASSES="MGT-001";
+export const MGT_MODES="MGT-002";
+export const MGT_SPECIALS="MGT-003";
+export const MGT_STAGES="MGT-004";
+export const MGT_SUBS="MGT-005";
+export const MGT_WEAPONS="MGT-006";
+export const MGT_WEIGHTS="MGT-007";
+export const MGT_RANK_X="MGT-008";
+export const UAC_MOD="MOD-003";
+export const UAC_USERS="UAC-001";
+export const UAC_SECTIONS="UAC-002";

@@ -3,6 +3,8 @@ import { Row } from "reactstrap";
 import ResultAlert from "../../components/ResultAlert";
 import ModalLauncher from "../../components/ModalLauncher";
 import WeaponWeightsList from "../../components/lists/WeaponWeightsList";
+import withAuthorization from "../../components/hocs/withAuthorization";
+import * as Operations from "../../utils/Operations";
 
 class AdminWeights extends React.Component {
 	state = {
@@ -33,4 +35,4 @@ class AdminWeights extends React.Component {
 	}
 }
 
-export default AdminWeights;
+export default withAuthorization(AdminWeights, Operations.MGT_WEIGHTS);

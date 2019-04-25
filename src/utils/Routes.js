@@ -9,3 +9,4 @@ export const ADM_STAGES = "/admin/stages";
 export const ADM_SUBS = "/admin/subs";
 export const ADM_WEAPONS = "/admin/weapons";
 export const ADM_WEIGHTS = "/admin/weights";
+export const UNAUTHORIZED = "/unauthorized";
