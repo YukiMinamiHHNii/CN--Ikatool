@@ -14,7 +14,7 @@ import { withRouter } from "react-router-dom";
 import { firebaseApp } from "../utils/FirebaseConfig";
 import "firebase/auth";
 import { SessionContext } from "../utils/Session";
-import { Section, SubSection } from "./nav/NavElements";
+import { SectionDropdown, SubSection, SingleSection } from "./nav/NavElements";
 
 class Navigation extends React.Component {
 	state = {
@@ -80,22 +80,47 @@ const LoggedNav = props => {
 					{props.name}
 				</Link>
 			</NavItem>
-			<Section
-				title="Manage"
-				operation={Operations.MGT_MOD}
-			>
+			<SectionDropdown title="Management" operation={Operations.MGT_MOD}>
 				<SubSection
 					title="Weapon Classes"
 					permissions={props.permissions}
 					operation={Operations.MGT_CLASSES}
-					route={Routes.ADM_CLASSES}
+					route={Routes.MGT_CLASSES}
 				/>
 				<SubSection
 					title="Game Modes"
 					operation={Operations.MGT_MODES}
-					route={Routes.ADM_MODES}
+					route={Routes.MGT_MODES}
 				/>
-			</Section>
+				<SubSection
+					title="Special Weapons"
+					operation={Operations.MGT_SPECIALS}
+					route={Routes.MGT_SPECIALS}
+				/>
+				<SubSection
+					title="Stages"
+					operation={Operations.MGT_STAGES}
+					route={Routes.MGT_STAGES}
+				/>
+				<SubSection
+					title="Sub Weapons"
+					operation={Operations.MGT_SUBS}
+					route={Routes.MGT_SUBS}
+				/>
+				<SubSection
+					title="Weapons"
+					operation={Operations.MGT_WEAPONS}
+					route={Routes.MGT_WEAPONS}
+				/>
+				<SubSection
+					title="Weapon Weights"
+					operation={Operations.MGT_WEIGHTS}
+					route={Routes.MGT_WEIGHTS}
+				/>
+			</SectionDropdown>
+			<NavItem>
+				<SingleSection title="Users and Access Control" operation={Operations.UAC_MOD} route={Routes.UAC}/>
+			</NavItem>
 			<NavItem>
 				<NavLink onClick={props.signOut}>Sign out</NavLink>
 			</NavItem>

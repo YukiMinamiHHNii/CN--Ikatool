@@ -8,13 +8,14 @@ import Navbar from "./components/Navigation";
 import Landing from "./modules/Landing";
 import Login from "./modules/session/Login";
 import Register from "./modules/session/Register";
-import AdminClasses from "./modules/admin/AdminClasses";
-import AdminModes from "./modules/admin/AdminModes";
-import AdminSpecials from "./modules/admin/AdminSpecials";
-import AdminStages from "./modules/admin/AdminStages";
-import AdminSubs from "./modules/admin/AdminSubs";
-import AdminWeapons from "./modules/admin/AdminWeapons";
-import AdminWeights from "./modules/admin/AdminWeights";
+import ManageClasses from "./modules/management/ManageClasses";
+import ManageModes from "./modules/management/ManageModes";
+import ManageSpecials from "./modules/management/ManageSpecials";
+import ManageStages from "./modules/management/ManageStages";
+import ManageSubs from "./modules/management/ManageSubs";
+import ManageWeapons from "./modules/management/ManageWeapons";
+import ManageWeights from "./modules/management/ManageWeights";
+import UsrAccessCtrl from "./modules/control/UsrAccessCtrl";
 
 import { Session } from "./utils/Session";
 
@@ -34,13 +35,14 @@ class App extends React.Component {
 								<Route path={Routes.HOME} exact component={Landing} />
 								<Route path={Routes.LOGIN} component={Login} />
 								<Route path={Routes.REGISTER} component={Register} />
-								<Route path={Routes.ADM_CLASSES} component={AdminClasses} />
-								<Route path={Routes.ADM_MODES} component={AdminModes} />
-								<Route path={Routes.ADM_SPECIALS} component={AdminSpecials} />
-								<Route path={Routes.ADM_STAGES} component={AdminStages} />
-								<Route path={Routes.ADM_SUBS} component={AdminSubs} />
-								<Route path={Routes.ADM_WEAPONS} component={AdminWeapons} />
-								<Route path={Routes.ADM_WEIGHTS} component={AdminWeights} />
+								<Route path={Routes.MGT_CLASSES} component={ManageClasses} />
+								<Route path={Routes.MGT_MODES} component={ManageModes} />
+								<Route path={Routes.MGT_SPECIALS} component={ManageSpecials} />
+								<Route path={Routes.MGT_STAGES} component={ManageStages} />
+								<Route path={Routes.MGT_SUBS} component={ManageSubs} />
+								<Route path={Routes.MGT_WEAPONS} component={ManageWeapons} />
+								<Route path={Routes.MGT_WEIGHTS} component={ManageWeights} />
+								<Route path={Routes.UAC} component={UsrAccessCtrl} />
 								<Route path={Routes.UNAUTHORIZED} component={Unauthorized} />
 								<Route component={NotFound} />
 							</Switch>
