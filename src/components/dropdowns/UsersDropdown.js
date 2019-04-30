@@ -28,7 +28,7 @@ class CollectionDropdown extends React.Component {
 						return (
 							<option
 								key={item.docId}
-								value={`${this.props.collection}/${item.docId}`}
+								value={item.docId}
 							>
 								{item.docId}
 							</option>

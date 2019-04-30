@@ -15,16 +15,15 @@ class UsrAccessCtrl extends React.Component {
 	getResult = data => {
 		this.setState({ ...data });
 	};
-	getSelection = selectedData => {
-		console.log(selectedData.users);
+	getSelection = selectionData => {
+		this.setState({ docId: selectionData.users, result: null, error: null });
 	};
-	test = e=>{
-		console.log(e.target.value);
-	}
 	render() {
 		return (
 			<Row>
-				<ResultAlert data={this.state} />
+				<ResultAlert
+					data={{ result: this.state.result, error: this.state.error }}
+				/>
 				<section className="col-sm-12 d-flex flex-wrap">
 					<h2 className="mr-3 header">Users and Access control</h2>
 				</section>
@@ -32,7 +31,7 @@ class UsrAccessCtrl extends React.Component {
 					<Label className="mr-3 mt-1">Selected user:</Label>
 					<UsersDropdown collection={"users"} selection={this.getSelection} />
 				</section>
-				<OperationsList/>
+				<OperationsList user={this.state.docId} getResult={this.getResult} />
 			</Row>
 		);
 	}

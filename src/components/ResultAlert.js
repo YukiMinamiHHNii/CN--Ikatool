@@ -11,7 +11,10 @@ class ResultAlert extends React.Component {
 		});
 	};
 	componentDidUpdate(prevProps) {
-		if (prevProps.data !== this.props.data) {
+		if (
+			prevProps.data !== this.props.data &&
+			(this.props.data.error || this.props.data.result)
+		) {
 			this.setState({ visible: true });
 		}
 	}

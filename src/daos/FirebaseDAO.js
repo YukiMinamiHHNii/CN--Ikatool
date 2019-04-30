@@ -124,3 +124,17 @@ export const saveDataWithId = (collection, docId, data) => {
 			return Promise.reject(`Backend - ${error}`);
 		});
 };
+
+export const updateData = (collection, docId, data) => {
+	return firebaseApp
+		.firestore()
+		.collection(collection)
+		.doc(docId)
+		.update(data)
+		.then(() => {
+			return { ...data, docId: docId };
+		})
+		.catch(error => {
+			return Promise.reject({ error: `Backend - ${error}` });
+		});
+};
