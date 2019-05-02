@@ -147,3 +147,9 @@ a:hover {
 	display: flex;
 	justify-content: center;
 }
+
+.feature{
+	background-color: var(--bg-color);
+	border-radius: .5rem;
+	padding: 1rem;
+}

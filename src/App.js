@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Container } from "reactstrap";
 import * as Routes from "./utils/Routes";
 import Navbar from "./components/Navigation";
-import Landing from "./modules/Landing";
+import Profile from "./modules/user/Profile";
 import Login from "./modules/session/Login";
 import Register from "./modules/session/Register";
 import ManageClasses from "./modules/management/ManageClasses";
@@ -31,10 +31,10 @@ class App extends React.Component {
 						<Container className="main-container">
 							<h2 className="header text-center">CN--Pearl</h2>
 							<Switch>
-								<Route path={Routes.INDEX} exact component={Landing} />
-								<Route path={Routes.HOME} exact component={Landing} />
+								<Route path={Routes.INDEX} exact component={Index} />
 								<Route path={Routes.LOGIN} component={Login} />
 								<Route path={Routes.REGISTER} component={Register} />
+								<Route path={Routes.HOME} exact component={Profile} />
 								<Route path={Routes.MGT_CLASSES} component={ManageClasses} />
 								<Route path={Routes.MGT_MODES} component={ManageModes} />
 								<Route path={Routes.MGT_SPECIALS} component={ManageSpecials} />
@@ -53,6 +53,14 @@ class App extends React.Component {
 		);
 	}
 }
+
+const Index = () => (
+	<h3 className="text-center">
+		CN--Pearl is a battle result tracker for Splatoon 2. Register the results
+		from your games and discover the most appropiate set to bring to the
+		battlefield based on the game mode and scenario you are currently in.
+	</h3>
+);
 
 const NotFound = () => (
 	<h2 className="text-center">

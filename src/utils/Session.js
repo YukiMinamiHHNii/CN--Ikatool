@@ -60,7 +60,8 @@ export class Session extends React.Component {
 				value={{
 					session: this.state,
 					updateSession: this.updateSession,
-					clearSession: this.clearSession
+					clearSession: this.clearSession,
+					initSession: this.initSession
 				}}
 			>
 				{this.props.children}

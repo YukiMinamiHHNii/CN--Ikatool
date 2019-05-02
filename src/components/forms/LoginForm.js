@@ -21,7 +21,10 @@ class LoginForm extends React.Component {
 			.auth()
 			.signInWithEmailAndPassword(this.state.mail, this.state.pass)
 			.then(data => {
-				this.props.history.push(HOME);
+				return this.context.initSession(data.user);
+			})
+			.then(() => {
+				return this.props.history.push(HOME);
 			})
 			.catch(error => {
 				this.props.getResult({
@@ -33,7 +36,7 @@ class LoginForm extends React.Component {
 	render() {
 		return (
 			<SessionContext.Consumer>
-				{({ session, updateSession }) => (
+				{({ session, updateSession, clearSession, initSession }) => (
 					<section>
 						<Form>
 							<FormGroup className="mb-3">
