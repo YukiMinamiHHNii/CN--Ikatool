@@ -47,6 +47,16 @@ export const addCollectionData = (data, collection) => {
 		});
 };
 
+export const addProfileDataWithId = (data, collection, docId) => {
+	return uploadImages(data["profile"], collection)
+		.then(updatedData => {
+			return saveDataWithId(collection, docId, { profile: updatedData });
+		})
+		.catch(error => {
+			return Promise.reject(`Backend - ${error}`);
+		});
+};
+
 function uploadImages(data, collection) {
 	let finalArray = [];
 
@@ -116,7 +126,7 @@ export const saveDataWithId = (collection, docId, data) => {
 		.firestore()
 		.collection(collection)
 		.doc(docId)
-		.set(data)
+		.set(data, { merge: true })
 		.then(() => {
 			return { ...data, docId: docId };
 		})

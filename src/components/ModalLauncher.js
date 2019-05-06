@@ -7,6 +7,7 @@ import AddSpecialWeaponForm from "./forms/AddSpecialWeaponForm";
 import AddSubWeaponForm from "./forms/AddSubWeaponForm";
 import AddWeaponWeightForm from "./forms/AddWeaponWeightForm";
 import AddWeaponForm from "./forms/AddWeaponForm";
+import UserProfileForm from "./forms/UserProfileForm";
 
 class ModalLauncher extends React.Component {
 	state = {
@@ -75,6 +76,15 @@ class ModalLauncher extends React.Component {
 			case "weapon":
 				modal = (
 					<AddWeaponForm
+						title={this.props.title}
+						getResult={this.props.getResult}
+						hide={this.toggle}
+					/>
+				);
+				break;
+			case "userProfile":
+				modal = (
+					<UserProfileForm
 						title={this.props.title}
 						getResult={this.props.getResult}
 						hide={this.toggle}
