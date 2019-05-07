@@ -1,7 +1,9 @@
 import React from "react";
 import { Input } from "reactstrap";
-import { findCollectionData } from "../daos/FirebaseDAO";
-import firebase from "firebase/app";
+import {
+	findCollectionData,
+	findCollectionDataById
+} from "../daos/FirebaseDAO";
 
 class CollectionDropdown extends React.Component {
 	state = {
@@ -13,12 +15,23 @@ class CollectionDropdown extends React.Component {
 		});
 	}
 	select = e => {
-		this.props.selection({
-			[this.props.collection]:
-				e.target.value !== "placeholder"
-					? firebase.firestore().doc(e.target.value)
-					: null
-		});
+		if (e.target.value !== "placeholder") {
+			findCollectionDataById(this.props.collection, e.target.value)
+				.then(result => {
+					this.props.selection({
+						[this.props.collection]: result
+					});
+				})
+				.catch(error => {
+					this.props.selection({
+						[this.props.collection]: null
+					});
+				});
+		} else {
+			this.props.selection({
+				[this.props.collection]: null
+			});
+		}
 	};
 	render() {
 		return (
@@ -27,10 +40,7 @@ class CollectionDropdown extends React.Component {
 					<option value={"placeholder"}>Select an item</option>
 					{this.state.items.map(item => {
 						return (
-							<option
-								key={item.docId}
-								value={`${this.props.collection}/${item.docId}`}
-							>
+							<option key={item.docId} value={item.docId}>
 								{item.name}
 							</option>
 						);

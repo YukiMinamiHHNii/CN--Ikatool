@@ -9,7 +9,7 @@ export const WeaponViewer = props => {
 					<img src={props.weapon.image} alt={props.weapon.name} />
 					<img
 						src={props.weapon.thumbnail}
-						alt={`${props.weapon.name} - thumb`}
+						alt={`${props.weapon.name}Thumb`}
 					/>
 				</section>
 			</article>

@@ -138,22 +138,50 @@ a:hover {
 }
 
 .custom-control-input:checked ~ .custom-control-label::before {
-  color: #fff;
-  border-color: var(--third-color);
-  background-color: var(--third-color);
+	color: #fff;
+	border-color: var(--third-color);
+	background-color: var(--third-color);
 }
 
-.table-responsive{
+.table-responsive {
 	display: flex;
 	justify-content: center;
 }
 
-.feature{
+.feature {
 	background-color: var(--bg-color);
-	border-radius: .5rem;
+	border-radius: 0.5rem;
 	padding: 1rem;
 }
 
-.profile-img{
+.profile-img {
 	max-width: 250px;
+	width: auto;
+  height: auto;
+  max-height: 250px;
+
+}
+
+.tab-body {
+	background-color: var(--bg-color);
+	border-radius: 0 0 0.5rem 0.5rem;
+	padding: 1rem;
+}
+
+.nav.nav-tabs,
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus,
+.nav-tabs > .nav-item > .active,
+.nav-tabs > .nav-item {
+	border: none;
+}
+
+.nav-tabs > .nav-item {
+	background-color: var(--bg-color);
+	border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.nav-tabs > .nav-item > .active {
+	background-color: var(--third-color);
+	color: var(--font-color);
 }

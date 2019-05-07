@@ -57,6 +57,10 @@ class RegisterForm extends React.Component {
 					profile: registeredUser.profile,
 					permissions: registeredUser.permissions
 				});
+			}).then(()=>{
+				return saveDataWithId("battle", this.state.mail, {
+					battles: []
+				});
 			})
 			.catch(error => {
 				return {

@@ -2,7 +2,7 @@ import React from "react";
 import { Input } from "reactstrap";
 import { findCollectionData } from "../../daos/FirebaseDAO";
 
-class CollectionDropdown extends React.Component {
+class UsersDropdown extends React.Component {
 	state = {
 		items: []
 	};
@@ -40,4 +40,4 @@ class CollectionDropdown extends React.Component {
 	}
 }
 
-export default CollectionDropdown;
+export default UsersDropdown;

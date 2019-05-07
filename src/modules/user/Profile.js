@@ -5,6 +5,7 @@ import ResultAlert from "../../components/ResultAlert";
 import { SessionContext } from "../../utils/Session";
 import withAuthorization from "../../components/hocs/withAuthorization";
 import * as Operations from "../../utils/Operations";
+import BattleInfo from "./BattleInfo";
 
 class Profile extends React.Component {
 	state = {
@@ -23,14 +24,14 @@ class Profile extends React.Component {
 					{({ session, updateSession }) => (
 						<article className="feature">
 							<Row>
-								<section className="col-sm-12 col-md-6 d-flex justify-content-center spacing">
+								<section className="col-sm-12 col-md-4 d-flex justify-content-center spacing">
 									<img
 										className="profile-img"
 										src={session.profile.avatar}
 										alt="placeholder"
 									/>
 								</section>
-								<section className="col-sm-12 col-md-6 d-flex justify-content-center align-items-center flex-wrap spacing">
+								<section className="col-sm-12 col-md-8 d-flex justify-content-center align-items-center flex-wrap spacing">
 									<section className="d-flex flex-wrap justify-content-center mb-3">
 										<h2 className="mr-3 ml-3">User Profile</h2>
 										<ModalLauncher
@@ -59,6 +60,7 @@ class Profile extends React.Component {
 						</article>
 					)}
 				</SessionContext.Consumer>
+				<BattleInfo operation={Operations.USR_BATTLES} getResult={this.getResult}/>
 			</section>
 		);
 	}
