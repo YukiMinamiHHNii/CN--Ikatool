@@ -8,6 +8,7 @@
     "create-hash": "^1.2.0",
     "dotenv": "^7.0.0",
     "firebase": "^5.10.0",
+    "gh-pages": "^2.0.1",
     "qs": "^6.7.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
@@ -16,6 +17,8 @@
     "reactstrap": "^7.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
