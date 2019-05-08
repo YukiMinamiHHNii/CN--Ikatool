@@ -3,7 +3,6 @@ import { Form, FormGroup, Label, Button } from "reactstrap";
 import CollectionDropdown from "../CollectionDropdown";
 import BattleResultDropdown from "../dropdowns/BattleResultDropdown";
 import { updateData } from "../../daos/FirebaseDAO";
-import { SessionContext } from "../../utils/Session";
 import * as firebase from "firebase/app";
 import "firebase/firestore";
 
@@ -16,7 +15,7 @@ class AddBattleInfoForm extends React.Component {
 	};
 	saveResult = () => {
 		if (this.checkFormData()) {
-			updateData("battle", this.context.session.userId, {
+			updateData("battle", this.props.userId, {
 				battles: firebase.firestore.FieldValue.arrayUnion({
 					...this.state,
 					date: new Date().toISOString()
@@ -26,7 +25,7 @@ class AddBattleInfoForm extends React.Component {
 					return this.props.getResult({
 						result: "Battle data added successfully",
 						error: null,
-						docId: response.docId
+						docId: new Date().toISOString()
 					});
 				})
 				.catch(error => {
@@ -63,48 +62,42 @@ class AddBattleInfoForm extends React.Component {
 	};
 	render() {
 		return (
-			<SessionContext.Consumer>
-				{({ session }) => (
-					<section className="col-sm-12">
-						<Form className="row">
-							<FormGroup className="mb-3 col-sm-12 col-md-4">
-								<Label className="col-sm-12 text-left">Played Game Mode</Label>
-								<CollectionDropdown
-									collection={"mode"}
-									selection={this.getSelection}
-								/>
-							</FormGroup>
-							<FormGroup className="mb-3 col-sm-12 col-md-4">
-								<Label className="col-sm-12 text-left">Played Stage</Label>
-								<CollectionDropdown
-									collection={"stage"}
-									selection={this.getSelection}
-								/>
-							</FormGroup>
-							<FormGroup className="mb-3 col-sm-12 col-md-4">
-								<Label className="col-sm-12 text-left">Used Weapon</Label>
-								<CollectionDropdown
-									collection={"weapon"}
-									selection={this.getSelection}
-								/>
-							</FormGroup>
-							<FormGroup className="mb-3 col-sm-12 col-md-4">
-								<Label className="col-sm-12 text-left">Battle Result</Label>
-								<BattleResultDropdown selection={this.getSelection} />
-							</FormGroup>
-							<FormGroup className="col-sm-12">
-								<Button className="pad-btn" onClick={this.saveResult}>
-									Save
-								</Button>
-							</FormGroup>
-						</Form>
-					</section>
-				)}
-			</SessionContext.Consumer>
+			<section className="col-sm-12">
+				<Form className="row">
+					<FormGroup className="mb-3 col-sm-12 col-md-4">
+						<Label className="col-sm-12 text-left">Played Game Mode</Label>
+						<CollectionDropdown
+							collection={"mode"}
+							selection={this.getSelection}
+						/>
+					</FormGroup>
+					<FormGroup className="mb-3 col-sm-12 col-md-4">
+						<Label className="col-sm-12 text-left">Played Stage</Label>
+						<CollectionDropdown
+							collection={"stage"}
+							selection={this.getSelection}
+						/>
+					</FormGroup>
+					<FormGroup className="mb-3 col-sm-12 col-md-4">
+						<Label className="col-sm-12 text-left">Used Weapon</Label>
+						<CollectionDropdown
+							collection={"weapon"}
+							selection={this.getSelection}
+						/>
+					</FormGroup>
+					<FormGroup className="mb-3 col-sm-12 col-md-4">
+						<Label className="col-sm-12 text-left">Battle Result</Label>
+						<BattleResultDropdown selection={this.getSelection} />
+					</FormGroup>
+					<FormGroup className="col-sm-12">
+						<Button className="pad-btn" onClick={this.saveResult}>
+							Save
+						</Button>
+					</FormGroup>
+				</Form>
+			</section>
 		);
 	}
 }
-
-AddBattleInfoForm.contextType = SessionContext;
 
 export default AddBattleInfoForm;

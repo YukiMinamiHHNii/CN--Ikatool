@@ -185,3 +185,7 @@ a:hover {
 	background-color: var(--third-color);
 	color: var(--font-color);
 }
+
+table th, .table td{
+	vertical-align: middle;
+}
