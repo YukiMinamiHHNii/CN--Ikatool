@@ -12,23 +12,23 @@ self.__precacheManifest = [
     "url": "/CN--Pearl/static/js/runtime~main.83d72958.js"
   },
   {
-    "revision": "b305c181984be25d8b2c",
-    "url": "/CN--Pearl/static/js/main.b1c02249.chunk.js"
+    "revision": "d64d959f51efbe1f9121",
+    "url": "/CN--Pearl/static/js/main.5d93c50d.chunk.js"
   },
   {
-    "revision": "102bb3f94be3e1d015e8",
-    "url": "/CN--Pearl/static/js/2.83af4e98.chunk.js"
+    "revision": "379bae496964e6d35225",
+    "url": "/CN--Pearl/static/js/2.7a50cc99.chunk.js"
   },
   {
-    "revision": "b305c181984be25d8b2c",
+    "revision": "d64d959f51efbe1f9121",
     "url": "/CN--Pearl/static/css/main.2876f95c.chunk.css"
   },
   {
-    "revision": "102bb3f94be3e1d015e8",
+    "revision": "379bae496964e6d35225",
     "url": "/CN--Pearl/static/css/2.a6bf4ac2.chunk.css"
   },
   {
-    "revision": "8a6152dffe56182654f484ecbf99be4a",
+    "revision": "c50694cc17bea76be1b385e1148a3339",
     "url": "/CN--Pearl/index.html"
   }
 ];
