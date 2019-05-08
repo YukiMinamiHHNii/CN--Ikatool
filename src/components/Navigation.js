@@ -40,7 +40,7 @@ class Navigation extends React.Component {
 			<SessionContext.Consumer>
 				{({ session, updateSession, clearSession }) => (
 					<Navbar className="second-color" expand="md">
-						<Link to={Routes.HOME} className="navbar-brand">
+						<Link to={Routes.INDEX} className="navbar-brand">
 							CN--Pearl
 						</Link>
 						<NavbarToggler onClick={this.toggle} />
